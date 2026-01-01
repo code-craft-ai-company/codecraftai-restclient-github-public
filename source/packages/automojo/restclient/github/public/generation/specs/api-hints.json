@@ -1,0 +1,172 @@
+{
+  "/emojis": {
+    "get": {
+      "method-name": "list_emojis"
+    }
+  },
+  "/assignments/{assignment_id}/grades": {
+    "get": {
+      "method-name": "list_assignment_grades"
+    }
+  },
+  "/codes_of_conduct": {
+    "get": {
+      "method-name": "list_codes_of_conduct"
+    }
+  },
+  "/enterprises/{enterprise}/code-security/configurations": {
+    "get": {
+      "method-name": "list_configurations_for_enterprise"
+    }
+  },
+  "/enterprises/{enterprise}/code-security/configurations/{configuration_id}/repositories": {
+    "get": {
+      "method-name": "list_repositories_for_enterprise_configuration"
+    }
+  },
+  "/gitignore/templates": {
+    "get": {
+      "method-name": "list_templates"
+    }
+  },
+  "/licenses": {
+    "get": {
+      "method-name": "list_commonly_used"
+    }
+  },
+  "/orgs/{org}/code-security/configurations": {
+    "get": {
+      "method-name": "list_configurations_for_org"
+    }
+  },
+  "/orgs/{org}/code-security/configurations/{configuration_id}/repositories": {
+    "get": {
+      "method-name": "list_repositories_for_configuration"
+    }
+  },
+  "/orgs/{org}/packages/{package_type}/{package_name}/versions": {
+    "get": {
+      "method-name": "list_package_versions_for_package_owned_by_org"
+    }
+  },
+  "/orgs/{org}/properties/schema": {
+    "get": {
+      "method-name": "list_custom_properties"
+    }
+  },
+  "/orgs/{org}/rulesets": {
+    "get": {
+      "method-name": "list_org_rulesets"
+    }
+  },
+  "/orgs/{org}/rulesets/{ruleset_id}/history": {
+    "get": {
+      "method-name": "list_org_ruleset_history"
+    }
+  },
+  "/repos/{owner}/{repo}/actions/runs/{run_id}/approvals": {
+    "get": {
+      "method-name": "list_reviews_for_run"
+    }
+  },
+  "/repos/{owner}/{repo}/actions/runs/{run_id}/pending_deployments": {
+    "get": {
+      "method-name": "list_pending_deployments_for_run"
+    }
+  },
+  "/repos/{owner}/{repo}/branches/{branch}/protection/required_status_checks/contexts": {
+    "get": {
+      "method-name": "list_status_check_contexts"
+    }
+  },
+  "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/apps": {
+    "get": {
+      "method-name": "list_apps_with_access_to_protected_branch"
+    }
+  },
+  "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/teams": {
+    "get": {
+      "method-name": "list_teams_with_access_to_protected_branch"
+    }
+  },
+  "/repos/{owner}/{repo}/branches/{branch}/protection/restrictions/users": {
+    "get": {
+      "method-name": "list_users_with_access_to_protected_branch"
+    }
+  },
+  "/repos/{owner}/{repo}/import/authors": {
+    "get": {
+      "method-name": "list_commit_authors"
+    }
+  },
+  "/repos/{owner}/{repo}/import/large_files": {
+    "get": {
+      "method-name": "list_large_files"
+    }
+  },
+  "/repos/{owner}/{repo}/properties/values": {
+    "get": {
+      "method-name": "list_custom_properties_values"
+    }
+  },
+  "/repos/{owner}/{repo}/rules/branches/{branch}": {
+    "get": {
+      "method-name": "list_branch_rules"
+    }
+  },
+  "/repos/{owner}/{repo}/rulesets": {
+    "get": {
+      "method-name": "list_repo_rulesets"
+    }
+  },
+  "/repos/{owner}/{repo}/rulesets/{ruleset_id}/history": {
+    "get": {
+      "method-name": "list_repo_ruleset_history"
+    }
+  },
+  "/repos/{owner}/{repo}/stats/code_frequency": {
+    "get": {
+      "method-name": "list_code_frequency_stats"
+    }
+  },
+  "/repos/{owner}/{repo}/stats/commit_activity": {
+    "get": {
+      "method-name": "list_commit_activity_stats"
+    }
+  },
+  "/repos/{owner}/{repo}/stats/contributors": {
+    "get": {
+      "method-name": "list_contributors_stats"
+    }
+  },
+  "/repos/{owner}/{repo}/stats/punch_card": {
+    "get": {
+      "method-name": "list_punch_card_stats"
+    }
+  },
+  "/repos/{owner}/{repo}/traffic/popular/paths": {
+    "get": {
+      "method-name": "list_top_paths"
+    }
+  },
+  "/repos/{owner}/{repo}/traffic/popular/referrers": {
+    "get": {
+      "method-name": "list_top_referrers"
+    }
+  },
+  "/user/packages/{package_type}/{package_name}/versions": {
+    "get": {
+      "method-name": "list_package_versions_for_package_owned_by_authenticated_user"
+    }
+  },
+  "/users/{username}/packages/{package_type}/{package_name}/versions": {
+    "get": {
+      "method-name": "list_package_versions_for_package_owned_by_user"
+    }
+  },
+  "/versions": {
+    "get": {
+      "method-name": "list_versions"
+    }
+  }
+}

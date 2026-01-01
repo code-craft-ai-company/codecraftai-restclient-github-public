@@ -1,0 +1,31 @@
+{
+  "_comment": "Pagination hints for GitHub REST API",
+  "_description": "Defines which operations return paginated results and how to detect pagination",
+  
+  "detection_rules": {
+    "link_header": {
+      "description": "Response has Link header with rel='next'",
+      "enabled": true
+    },
+    "query_parameters": {
+      "description": "Request accepts 'page' and 'per_page' query parameters",
+      "parameters": ["page", "per_page"],
+      "enabled": true
+    }
+  },
+  
+  "default_parameters": {
+    "page_param": "page",
+    "per_page_param": "per_page",
+    "default_page": 1,
+    "default_per_page": 30
+  },
+  
+  "exceptions": {
+    "_comment": "Operations that look paginated but aren't, or have non-standard pagination",
+    "non_paginated": [
+    ],
+    "custom_pagination": {
+    }
+  }
+}

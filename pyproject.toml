@@ -19,7 +19,7 @@ packages = [{include="automojo", from="source/packages"}]
 python = ">=3.10,<4.0"
 automojo-errors = { git = "https://github.com/automationmojo/automojo-errors.git", branch = "main" }
 automojo-credentials = { git = "https://github.com/automationmojo/automojo-credentials.git", branch = "main" }
-automojo-github-base = { git = "https://github.com/automationmojo/automojo-github-base.git", branch = "main" }
+automojo-restclient-base = { git = "https://github.com/automationmojo/automojo-restclient-base.git", branch = "main" }
 
 
 [tool.poetry.group.dev.dependencies]
