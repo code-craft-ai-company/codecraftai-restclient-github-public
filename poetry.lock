@@ -64,7 +64,7 @@ automojo-errors = {git = "https://github.com/automationmojo/automojo-errors.git"
 type = "git"
 url = "https://github.com/automationmojo/automojo-credentials.git"
 reference = "main"
-resolved_reference = "18ca80b0485a5851e7889673b0ccb60c09661010"
+resolved_reference = "cb7e4c4a4cd906799fda1e5d27c2d9daf5950e16"
 
 [[package]]
 name = "automojo-errors"
@@ -135,7 +135,7 @@ requests = "^2.32.5"
 type = "git"
 url = "https://github.com/automationmojo/automojo-restclient-base.git"
 reference = "main"
-resolved_reference = "7f629ef31088c2c93a71b71ad2a517b6234af76d"
+resolved_reference = "38a340e32568bf346f8f7fdd73de15ba8e2f0cfe"
 
 [[package]]
 name = "automojo-runtime"
