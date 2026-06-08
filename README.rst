@@ -1,8 +1,8 @@
 ==================================================
-Automation Mojo RestClient GitHub (Public)
+Code Craft AI RestClient GitHub (Public)
 ==================================================
 
-The ``automojo-restclient-github-public`` package is the GitHub public-API REST client for the automojo suite. It is built on top of ``automojo-restclient-base`` and provides a typed, schema-driven client with coverage for the public surface of the GitHub REST API — including actions, apps, billing, code scanning, codespaces, copilot, dependabot, issues, and the rest of the well-known endpoint families.
+The ``codecraftai-restclient-github-public`` package is the GitHub public-API REST client for the ccai suite. It is built on top of ``codecraftai-restclient-base`` and provides a typed, schema-driven client with coverage for the public surface of the GitHub REST API — including actions, apps, billing, code scanning, codespaces, copilot, dependabot, issues, and the rest of the well-known endpoint families.
 
 Highlights
 ==========
@@ -11,7 +11,7 @@ Highlights
 - Generated schema catalogue under ``public/schemas/`` modelling each GitHub resource with ``SchemaObject``/``SchemaField`` bindings.
 - Endpoint groupings under ``public/groups/`` covering actions, apps, billing, code scanning, codespaces, copilot, dependabot, issues, and more.
 - ``GithubRestClientGenerator`` under ``public/generation/`` to regenerate schema and group modules from the GitHub OpenAPI spec.
-- Token and app authentication via ``automojo-credentials``.
+- Token and app authentication via ``codecraftai-credentials``.
 
 Repository Structure
 ====================
@@ -51,7 +51,7 @@ Run TestBase tests (when test roots are populated):
 
 .. code-block:: bash
 
-   testbase testing run --root source/testroots/testbase --includes=automojo --output=./.output
+   testbase testing run --root source/testroots/testbase --includes=ccai --output=./.output
 
 Standards and Conventions
 =========================
