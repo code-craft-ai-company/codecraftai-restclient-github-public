@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "codecraftai-restclient-github-public"
 description = "Code Craft AI -  Rest Client for Github (public)"
-version = "1.0.1"
+version = "1.0.2"
 authors = ["Myron Walker <myron.walker@gmail.com>"]
 readme = "README.rst"
 license = "LicenseRef-CodeCraftAI-Dual-License"

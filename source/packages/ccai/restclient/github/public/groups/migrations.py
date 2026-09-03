@@ -195,19 +195,19 @@ class MigrationsApiGroup(RestApiGroup):
 
 *   attachments
 *   bases
-*   commit\_comments
-*   issue\_comments
-*   issue\_events
+*   commit_comments
+*   issue_comments
+*   issue_events
 *   issues
 *   milestones
 *   organizations
 *   projects
-*   protected\_branches
-*   pull\_request\_reviews
-*   pull\_requests
+*   protected_branches
+*   pull_request_reviews
+*   pull_requests
 *   releases
 *   repositories
-*   review\_comments
+*   review_comments
 *   schema
 *   users
 

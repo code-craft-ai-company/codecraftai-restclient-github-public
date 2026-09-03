@@ -63,4 +63,6 @@ jobs:
           poetry install --all-extras
       
       - name: Run Tests
-        run: echo "no test tree in this repository yet; the gate verifies the environment builds"
+        run: |
+          source ./.venv/bin/activate
+          python3 -m unittest discover -s ./source/tests -p "test_*.py"

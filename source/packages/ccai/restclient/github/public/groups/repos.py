@@ -4019,7 +4019,7 @@ When authenticated with admin or owner permissions to the repository, you can us
             Returns all community profile metrics for a repository. The repository cannot be a fork.
 
 The returned metrics include an overall health score, the repository description, the presence of documentation, the
-detected code of conduct, the detected license, and the presence of ISSUE\_TEMPLATE, PULL\_REQUEST\_TEMPLATE,
+detected code of conduct, the detected license, and the presence of ISSUE_TEMPLATE, PULL_REQUEST_TEMPLATE,
 README, and CONTRIBUTING files.
 
 The `health_percentage` score is defined as a percentage of how many of
