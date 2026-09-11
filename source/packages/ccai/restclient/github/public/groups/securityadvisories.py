@@ -102,7 +102,11 @@ See "[Privately reporting a security vulnerability](https://docs.github.com/code
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_repository_advisory(self, owner: str, repo: str, body: RepositoryAdvisoryCreate, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -145,7 +149,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `reposi
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_repository_advisory_cve_request(self, owner: str, repo: str, ghsa_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -233,8 +241,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `reposi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GlobalAdvisory.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GlobalAdvisory.from_dict(raw_data)
         return rtnobj
 
     def get_repository_advisory(self, owner: str, repo: str, ghsa_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryAdvisory:
@@ -282,8 +293,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `reposi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryAdvisory.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryAdvisory.from_dict(raw_data)
         return rtnobj
 
     def list_global_advisories(self, *, ghsa_id: Optional[str] = None, type: Optional[str] = "reviewed", cve_id: Optional[str] = None, ecosystem: Optional[str] = None, severity: Optional[str] = None, cwes: Optional[Union[str, List[str]]] = None, is_withdrawn: Optional[bool] = None, affects: Optional[Union[str, List[str]]] = None, published: Optional[str] = None, updated: Optional[str] = None, modified: Optional[str] = None, epss_percentage: Optional[str] = None, epss_percentile: Optional[str] = None, before: Optional[str] = None, after: Optional[str] = None, direction: Optional[str] = "desc", per_page: Optional[int] = 30, sort: Optional[str] = "published", exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[GlobalAdvisory]:
@@ -519,6 +533,9 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `reposi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryAdvisory.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryAdvisory.from_dict(raw_data)
         return rtnobj

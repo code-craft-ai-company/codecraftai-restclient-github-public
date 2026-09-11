@@ -91,7 +91,11 @@ class GistsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_comment(self, gist_id: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -134,7 +138,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete(self, gist_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -251,7 +259,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get(self, gist_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GistSimple:
         """
@@ -294,8 +306,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GistSimple.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GistSimple.from_dict(raw_data)
         return rtnobj
 
     def get_comment(self, gist_id: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GistComment:
@@ -340,8 +355,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GistComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GistComment.from_dict(raw_data)
         return rtnobj
 
     def get_revision(self, gist_id: str, sha: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GistSimple:
@@ -386,8 +404,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GistSimple.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GistSimple.from_dict(raw_data)
         return rtnobj
 
     def list(self, *, since: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[BaseGist]:
@@ -831,8 +852,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GistSimple.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GistSimple.from_dict(raw_data)
         return rtnobj
 
     def update_comment(self, gist_id: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GistComment:
@@ -877,6 +901,9 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GistComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GistComment.from_dict(raw_data)
         return rtnobj

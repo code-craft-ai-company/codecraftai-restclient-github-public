@@ -195,8 +195,11 @@ By default, timeline resources are returned in JSON. You can specify the `applic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Feed.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Feed.from_dict(raw_data)
         return rtnobj
 
     def get_repo_subscription(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositorySubscription:
@@ -236,8 +239,11 @@ By default, timeline resources are returned in JSON. You can specify the `applic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositorySubscription.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositorySubscription.from_dict(raw_data)
         return rtnobj
 
     def get_thread(self, thread_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Thread:
@@ -276,8 +282,11 @@ By default, timeline resources are returned in JSON. You can specify the `applic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Thread.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Thread.from_dict(raw_data)
         return rtnobj
 
     def get_thread_subscription_for_authenticated_user(self, thread_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ThreadSubscription:
@@ -318,8 +327,11 @@ Note that subscriptions are only generated if a user is participating in a conve
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ThreadSubscription.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ThreadSubscription.from_dict(raw_data)
         return rtnobj
 
     def list_events_for_authenticated_user(self, username: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[Event]:
@@ -942,8 +954,12 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[List[StarredRepository], List[Repository]])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[List[StarredRepository], List[Repository]])
+        return rtnval
 
     def list_repos_watched_by_user(self, username: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[MinimalRepository]:
         """
@@ -1035,8 +1051,12 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[List[SimpleUser], List[Stargazer]])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[List[SimpleUser], List[Stargazer]])
+        return rtnval
 
     def list_watched_repos_for_authenticated_user(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[MinimalRepository]:
         """
@@ -1327,8 +1347,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositorySubscription.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositorySubscription.from_dict(raw_data)
         return rtnobj
 
     def set_thread_subscription(self, thread_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ThreadSubscription:
@@ -1371,8 +1394,11 @@ Unsubscribing from a conversation in a repository that you are not watching is f
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ThreadSubscription.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ThreadSubscription.from_dict(raw_data)
         return rtnobj
 
     def star_repo_for_authenticated_user(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:

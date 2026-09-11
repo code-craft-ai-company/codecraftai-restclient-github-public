@@ -185,7 +185,11 @@ class MigrationsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get_archive_for_authenticated_user(self, migration_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -243,7 +247,11 @@ The archive will also contain an `attachments` directory that includes all attac
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get_import_status(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Import:
         """
@@ -318,8 +326,11 @@ This section includes details about Git LFS related fields that may be present i
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Import.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Import.from_dict(raw_data)
         return rtnobj
 
     def get_status_for_authenticated_user(self, migration_id: int, *, exclude: Optional[List[str]] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Migration:
@@ -367,8 +378,11 @@ Once the migration has been `exported` you can [download the migration archive](
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Migration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Migration.from_dict(raw_data)
         return rtnobj
 
     def get_status_for_org(self, org: str, migration_id: int, *, exclude: Optional[List[str]] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Migration:
@@ -417,8 +431,11 @@ The `state` of a migration can be one of the following values:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Migration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Migration.from_dict(raw_data)
         return rtnobj
 
     def list_commit_authors(self, owner: str, repo: str, *, since: Optional[int] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[PorterAuthor]:
@@ -736,8 +753,11 @@ new commits to the repository.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PorterAuthor.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PorterAuthor.from_dict(raw_data)
         return rtnobj
 
     def set_lfs_preference(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Import:
@@ -784,8 +804,11 @@ site](https://docs.github.com/repositories/working-with-files/managing-large-fil
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Import.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Import.from_dict(raw_data)
         return rtnobj
 
     def start_for_authenticated_user(self, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -820,7 +843,11 @@ site](https://docs.github.com/repositories/working-with-files/managing-large-fil
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def start_for_org(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -858,7 +885,11 @@ site](https://docs.github.com/repositories/working-with-files/managing-large-fil
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def start_import(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -902,7 +933,11 @@ return a status `422 Unprocessable Entity` response.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def unlock_repo_for_authenticated_user(self, migration_id: int, repo_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1036,6 +1071,9 @@ You can select the project to import by providing one of the objects in the `pro
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Import.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Import.from_dict(raw_data)
         return rtnobj

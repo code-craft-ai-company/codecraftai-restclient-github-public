@@ -55,8 +55,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `admin:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsBillingUsage.from_dict(raw_data)
         return rtnobj
 
     def get_github_actions_billing_user(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsBillingUsage:
@@ -99,8 +102,11 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsBillingUsage.from_dict(raw_data)
         return rtnobj
 
     def get_github_billing_usage_report_org(self, org: str, *, year: Optional[int] = None, month: Optional[int] = None, day: Optional[int] = None, hour: Optional[int] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -149,7 +155,11 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get_github_billing_usage_report_user(self, username: str, *, year: Optional[int] = None, month: Optional[int] = None, day: Optional[int] = None, hour: Optional[int] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -197,7 +207,11 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get_github_packages_billing_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PackagesBillingUsage:
         """
@@ -239,8 +253,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `admin:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PackagesBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PackagesBillingUsage.from_dict(raw_data)
         return rtnobj
 
     def get_github_packages_billing_user(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PackagesBillingUsage:
@@ -283,8 +300,11 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PackagesBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PackagesBillingUsage.from_dict(raw_data)
         return rtnobj
 
     def get_shared_storage_billing_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CombinedBillingUsage:
@@ -327,8 +347,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `admin:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CombinedBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CombinedBillingUsage.from_dict(raw_data)
         return rtnobj
 
     def get_shared_storage_billing_user(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CombinedBillingUsage:
@@ -371,6 +394,9 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CombinedBillingUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CombinedBillingUsage.from_dict(raw_data)
         return rtnobj

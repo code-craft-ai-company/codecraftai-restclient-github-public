@@ -80,7 +80,11 @@ class IssuesApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def add_blocked_by_dependency(self, owner: str, repo: str, issue_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -131,7 +135,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def add_labels(self, owner: str, repo: str, issue_number: int, body: Union[Dict[str, Any], List[str], Dict[str, Any], List[Dict[str, Any]], str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Label]:
         """
@@ -224,7 +232,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def check_user_can_be_assigned(self, owner: str, repo: str, assignee: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -370,7 +382,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_comment(self, owner: str, repo: str, issue_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -422,7 +438,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_label(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -461,7 +481,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_milestone(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -500,7 +524,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_comment(self, owner: str, repo: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -687,8 +715,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def get_comment(self, owner: str, repo: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> IssueComment:
@@ -736,8 +767,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = IssueComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = IssueComment.from_dict(raw_data)
         return rtnobj
 
     def get_event(self, owner: str, repo: str, event_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> IssueEvent:
@@ -778,8 +812,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = IssueEvent.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = IssueEvent.from_dict(raw_data)
         return rtnobj
 
     def get_label(self, owner: str, repo: str, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Label:
@@ -820,8 +857,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Label.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Label.from_dict(raw_data)
         return rtnobj
 
     def get_milestone(self, owner: str, repo: str, milestone_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Milestone:
@@ -862,8 +902,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Milestone.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Milestone.from_dict(raw_data)
         return rtnobj
 
     def list(self, *, filter: Optional[str] = "assigned", state: Optional[str] = "open", labels: Optional[str] = None, sort: Optional[str] = "created", direction: Optional[str] = "desc", since: Optional[str] = None, collab: Optional[bool] = None, orgs: Optional[bool] = None, owned: Optional[bool] = None, pulls: Optional[bool] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[Issue]:
@@ -1934,8 +1977,11 @@ Note that, if you choose not to pass any parameters, you'll need to set `Content
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def remove_dependency_blocked_by(self, owner: str, repo: str, issue_number: int, issue_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Issue:
@@ -1987,8 +2033,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def remove_label(self, owner: str, repo: str, issue_number: int, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Label]:
@@ -2080,8 +2129,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def reprioritize_sub_issue(self, owner: str, repo: str, issue_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Issue:
@@ -2122,8 +2174,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def set_labels(self, owner: str, repo: str, issue_number: int, body: Union[Dict[str, Any], List[str], Dict[str, Any], List[Dict[str, Any]], str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Label]:
@@ -2257,8 +2312,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Issue.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Issue.from_dict(raw_data)
         return rtnobj
 
     def update_comment(self, owner: str, repo: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> IssueComment:
@@ -2306,8 +2364,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = IssueComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = IssueComment.from_dict(raw_data)
         return rtnobj
 
     def update_label(self, owner: str, repo: str, name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Label:
@@ -2348,8 +2409,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Label.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Label.from_dict(raw_data)
         return rtnobj
 
     def update_milestone(self, owner: str, repo: str, milestone_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Milestone:
@@ -2388,6 +2452,9 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Milestone.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Milestone.from_dict(raw_data)
         return rtnobj

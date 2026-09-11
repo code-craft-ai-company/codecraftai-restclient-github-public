@@ -52,7 +52,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:network_co
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_network_configuration_from_org(self, org: str, network_configuration_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -138,8 +142,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:network_con
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = NetworkConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = NetworkConfiguration.from_dict(raw_data)
         return rtnobj
 
     def get_network_settings_for_org(self, org: str, network_settings_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> NetworkSettings:
@@ -181,8 +188,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:network_con
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = NetworkSettings.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = NetworkSettings.from_dict(raw_data)
         return rtnobj
 
     def list_network_configurations_for_org(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -227,8 +237,12 @@ OAuth app tokens and personal access tokens (classic) need the `read:network_con
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def update_network_configuration_for_org(self, org: str, network_configuration_id: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> NetworkConfiguration:
         """
@@ -269,6 +283,9 @@ OAuth app tokens and personal access tokens (classic) need the `write:network_co
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = NetworkConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = NetworkConfiguration.from_dict(raw_data)
         return rtnobj

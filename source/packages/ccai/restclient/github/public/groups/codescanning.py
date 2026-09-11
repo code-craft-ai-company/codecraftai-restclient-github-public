@@ -68,7 +68,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_autofix(self, owner: str, repo: str, alert_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningAutofix:
         """
@@ -165,7 +169,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_analysis(self, owner: str, repo: str, analysis_id: int, *, confirm_delete: Optional[Optional[str]] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningAnalysisDeletion:
         """
@@ -270,8 +278,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningAnalysisDeletion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningAnalysisDeletion.from_dict(raw_data)
         return rtnobj
 
     def delete_codeql_database(self, owner: str, repo: str, language: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -360,8 +371,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningAlert.from_dict(raw_data)
         return rtnobj
 
     def get_analysis(self, owner: str, repo: str, analysis_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningAnalysis:
@@ -418,8 +432,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningAnalysis.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningAnalysis.from_dict(raw_data)
         return rtnobj
 
     def get_autofix(self, owner: str, repo: str, alert_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningAutofix:
@@ -462,8 +479,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningAutofix.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningAutofix.from_dict(raw_data)
         return rtnobj
 
     def get_codeql_database(self, owner: str, repo: str, language: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningCodeqlDatabase:
@@ -512,8 +532,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningCodeqlDatabase.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningCodeqlDatabase.from_dict(raw_data)
         return rtnobj
 
     def get_default_setup(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningDefaultSetup:
@@ -555,8 +578,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningDefaultSetup.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningDefaultSetup.from_dict(raw_data)
         return rtnobj
 
     def get_sarif(self, owner: str, repo: str, sarif_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningSarifsStatus:
@@ -598,8 +624,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningSarifsStatus.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningSarifsStatus.from_dict(raw_data)
         return rtnobj
 
     def get_variant_analysis(self, owner: str, repo: str, codeql_variant_analysis_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningVariantAnalysis:
@@ -642,8 +671,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningVariantAnalysis.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningVariantAnalysis.from_dict(raw_data)
         return rtnobj
 
     def get_variant_analysis_repo_task(self, owner: str, repo: str, codeql_variant_analysis_id: int, repo_owner: str, repo_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeScanningVariantAnalysisRepoTask:
@@ -688,8 +720,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningVariantAnalysisRepoTask.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningVariantAnalysisRepoTask.from_dict(raw_data)
         return rtnobj
 
     def list_alert_instances(self, owner: str, repo: str, alert_number: int, *, page: Optional[int] = 1, per_page: Optional[int] = 30, ref: Optional[str] = None, pr: Optional[int] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[CodeScanningAlertInstance]:
@@ -1038,8 +1073,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeScanningAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeScanningAlert.from_dict(raw_data)
         return rtnobj
 
     def update_default_setup(self, owner: str, repo: str, body: CodeScanningDefaultSetupUpdate, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:

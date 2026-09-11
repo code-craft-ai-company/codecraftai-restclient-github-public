@@ -340,8 +340,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Package.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Package.from_dict(raw_data)
         return rtnobj
 
     def get_package_for_organization(self, package_type: str, package_name: str, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Package:
@@ -384,8 +387,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Package.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Package.from_dict(raw_data)
         return rtnobj
 
     def get_package_for_user(self, package_type: str, package_name: str, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Package:
@@ -428,8 +434,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Package.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Package.from_dict(raw_data)
         return rtnobj
 
     def get_package_version_for_authenticated_user(self, package_type: str, package_name: str, package_version_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PackageVersion:
@@ -472,8 +481,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PackageVersion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PackageVersion.from_dict(raw_data)
         return rtnobj
 
     def get_package_version_for_organization(self, package_type: str, package_name: str, org: str, package_version_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PackageVersion:
@@ -517,8 +529,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PackageVersion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PackageVersion.from_dict(raw_data)
         return rtnobj
 
     def get_package_version_for_user(self, package_type: str, package_name: str, package_version_id: int, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PackageVersion:
@@ -562,8 +577,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:packages` s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PackageVersion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PackageVersion.from_dict(raw_data)
         return rtnobj
 
     def list_docker_migration_conflicting_packages_for_authenticated_user(self, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Package]:

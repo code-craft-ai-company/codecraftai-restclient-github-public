@@ -100,7 +100,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_column(self, project_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -140,7 +144,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_for_authenticated_user(self, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -176,7 +184,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_for_org(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -216,7 +228,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_for_repo(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -257,7 +273,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete(self, project_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -429,8 +449,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Project.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Project.from_dict(raw_data)
         return rtnobj
 
     def get_card(self, card_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProjectCard:
@@ -471,8 +494,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProjectCard.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProjectCard.from_dict(raw_data)
         return rtnobj
 
     def get_column(self, column_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProjectColumn:
@@ -513,8 +539,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProjectColumn.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProjectColumn.from_dict(raw_data)
         return rtnobj
 
     def get_permission_for_user(self, project_id: int, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProjectCollaboratorPermission:
@@ -556,8 +585,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProjectCollaboratorPermission.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProjectCollaboratorPermission.from_dict(raw_data)
         return rtnobj
 
     def list_cards(self, column_id: int, *, archived_state: Optional[str] = "not_archived", per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[ProjectCard]:
@@ -891,7 +923,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def move_column(self, column_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -931,7 +967,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_collaborator(self, project_id: int, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1016,8 +1056,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Project.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Project.from_dict(raw_data)
         return rtnobj
 
     def update_card(self, card_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProjectCard:
@@ -1058,8 +1101,11 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProjectCard.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProjectCard.from_dict(raw_data)
         return rtnobj
 
     def update_column(self, column_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProjectColumn:
@@ -1100,6 +1146,9 @@ class ProjectsClassicApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProjectColumn.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProjectColumn.from_dict(raw_data)
         return rtnobj

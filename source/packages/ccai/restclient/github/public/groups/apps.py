@@ -103,8 +103,11 @@ This endpoint only works for PATs (classic) with the `repo` scope.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Authorization.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Authorization.from_dict(raw_data)
         return rtnobj
 
     def create_from_manifest(self, code: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -143,7 +146,11 @@ This endpoint only works for PATs (classic) with the `repo` scope.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_installation_access_token(self, installation_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -187,7 +194,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_authorization(self, client_id: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -352,8 +363,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Integration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Integration.from_dict(raw_data)
         return rtnobj
 
     def get_by_slug(self, app_slug: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Integration:
@@ -393,8 +407,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Integration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Integration.from_dict(raw_data)
         return rtnobj
 
     def get_installation(self, installation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Installation:
@@ -435,8 +452,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Installation.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Installation.from_dict(raw_data)
         return rtnobj
 
     def get_org_installation(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Installation:
@@ -477,8 +497,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Installation.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Installation.from_dict(raw_data)
         return rtnobj
 
     def get_repo_installation(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Installation:
@@ -520,8 +543,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Installation.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Installation.from_dict(raw_data)
         return rtnobj
 
     def get_subscription_plan_for_account(self, account_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> MarketplacePurchase:
@@ -562,8 +588,11 @@ GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = MarketplacePurchase.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = MarketplacePurchase.from_dict(raw_data)
         return rtnobj
 
     def get_subscription_plan_for_account_stubbed(self, account_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> MarketplacePurchase:
@@ -604,8 +633,11 @@ GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = MarketplacePurchase.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = MarketplacePurchase.from_dict(raw_data)
         return rtnobj
 
     def get_user_installation(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Installation:
@@ -646,8 +678,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Installation.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Installation.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_config_for_app(self, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WebhookConfig:
@@ -684,8 +719,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_delivery(self, delivery_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> HookDelivery:
@@ -726,8 +764,11 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = HookDelivery.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = HookDelivery.from_dict(raw_data)
         return rtnobj
 
     def list_accounts_for_plan(self, plan_id: int, *, sort: Optional[str] = "created", direction: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[MarketplacePurchase]:
@@ -876,8 +917,12 @@ The access the user has to each repository is included in the hash under the `pe
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_installation_requests_for_authenticated_app(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[IntegrationInstallationRequest]:
         """
@@ -1007,8 +1052,12 @@ You can find the permissions for the installation under the `permissions` key.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_plans(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[MarketplaceListingPlan]:
         """
@@ -1132,8 +1181,12 @@ GitHub Apps must use a [JWT](https://docs.github.com/apps/building-github-apps/a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_subscriptions_for_authenticated_user(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[UserMarketplacePurchase]:
         """
@@ -1385,8 +1438,11 @@ This endpoint only works for PATs (classic) with the `repo` scope.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Authorization.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Authorization.from_dict(raw_data)
         return rtnobj
 
     def revoke_installation_access_token(self, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1469,8 +1525,11 @@ Invalid tokens will return `404 NOT FOUND`.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Authorization.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Authorization.from_dict(raw_data)
         return rtnobj
 
     def suspend_installation(self, installation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1595,6 +1654,9 @@ You must use a [JWT](https://docs.github.com/apps/building-github-apps/authentic
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj

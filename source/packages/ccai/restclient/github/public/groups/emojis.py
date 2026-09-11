@@ -44,5 +44,9 @@ class EmojisApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval

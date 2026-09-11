@@ -52,7 +52,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_org_private_registry(self, org: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -140,8 +144,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgPrivateRegistryConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgPrivateRegistryConfiguration.from_dict(raw_data)
         return rtnobj
 
     def get_org_public_key(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -183,8 +190,12 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_org_private_registries(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -230,8 +241,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def update_org_private_registry(self, org: str, secret_name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """

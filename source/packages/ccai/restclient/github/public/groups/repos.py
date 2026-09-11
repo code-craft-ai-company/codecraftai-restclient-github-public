@@ -450,8 +450,11 @@ The authenticated user must have write permissions for the GitHub Pages site.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckAutomatedSecurityFixes.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckAutomatedSecurityFixes.from_dict(raw_data)
         return rtnobj
 
     def check_collaborator(self, owner: str, repo: str, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -541,8 +544,12 @@ OAuth app tokens and personal access tokens (classic) need the `read:org` and `r
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def check_vulnerability_alerts(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -630,8 +637,11 @@ see "[About code owners](https://docs.github.com/repositories/managing-your-repo
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeownersErrors.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeownersErrors.from_dict(raw_data)
         return rtnobj
 
     def compare_commits(self, owner: str, repo: str, basehead: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CommitComparison:
@@ -726,8 +736,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CommitComparison.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CommitComparison.from_dict(raw_data)
         return rtnobj
 
     def create_attestation(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -771,7 +784,11 @@ Artifact attestations are meant to be created using the [attest action](https://
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_autolink(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -810,7 +827,11 @@ Artifact attestations are meant to be created using the [attest action](https://
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_commit_comment(self, owner: str, repo: str, commit_sha: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -859,7 +880,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_commit_signature_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchAdminEnforced:
         """
@@ -901,8 +926,11 @@ When authenticated with admin or owner permissions to the repository, you can us
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
         return rtnobj
 
     def create_commit_status(self, owner: str, repo: str, sha: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -945,7 +973,11 @@ Note: there is a limit of 1000 statuses per `sha` and `context` within a reposit
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_deploy_key(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -984,7 +1016,11 @@ Note: there is a limit of 1000 statuses per `sha` and `context` within a reposit
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_deployment(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1116,8 +1152,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
         return rtnobj
 
     def create_deployment_protection_rule(self, environment_name: str, repo: str, owner: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1164,7 +1203,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_deployment_status(self, owner: str, repo: str, deployment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1206,7 +1249,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo_deployment`
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_dispatch_event(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1291,7 +1338,11 @@ OAuth app tokens and personal access tokens (classic) need the `public_repo` or 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_fork(self, owner: str, repo: str, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1380,7 +1431,11 @@ OAuth app tokens and personal access tokens (classic) need the `public_repo` or 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_or_update_custom_properties_values(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1474,8 +1529,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Environment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Environment.from_dict(raw_data)
         return rtnobj
 
     def create_or_update_file_contents(self, owner: str, repo: str, path: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> FileCommit:
@@ -1521,8 +1579,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = FileCommit.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = FileCommit.from_dict(raw_data)
         return rtnobj
 
     def create_org_ruleset(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1561,7 +1622,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_pages_deployment(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PageDeployment:
         """
@@ -1602,8 +1667,11 @@ The authenticated user must have write permission to the repository.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PageDeployment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PageDeployment.from_dict(raw_data)
         return rtnobj
 
     def create_pages_site(self, owner: str, repo: str, body: Optional[Union[str, str]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1647,7 +1715,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_release(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1688,7 +1760,11 @@ This endpoint triggers [notifications](https://docs.github.com/github/managing-s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_repo_ruleset(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1727,7 +1803,11 @@ This endpoint triggers [notifications](https://docs.github.com/github/managing-s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_tag_protection(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1770,7 +1850,11 @@ This endpoint is only available to repository administrators.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_using_template(self, template_owner: str, template_repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1811,7 +1895,11 @@ OAuth app tokens and personal access tokens (classic) need the `public_repo` or 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_webhook(self, owner: str, repo: str, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1851,7 +1939,11 @@ share the same `config` as long as those webhooks do not have any `events` that 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def decline_invitation_for_authenticated_user(self, invitation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -2446,8 +2538,11 @@ You must provide values for both `name` and `email`, whether you choose to use `
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = FileCommit.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = FileCommit.from_dict(raw_data)
         return rtnobj
 
     def delete_invitation(self, owner: str, repo: str, invitation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -3073,7 +3168,11 @@ the `Location` header to make a second `GET` request.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def download_zipball_archive(self, owner: str, repo: str, ref: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -3118,7 +3217,11 @@ the `Location` header to make a second `GET` request.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def enable_automated_security_fixes(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -3286,8 +3389,11 @@ the `Location` header to make a second `GET` request.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ReleaseNotesContent.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ReleaseNotesContent.from_dict(raw_data)
         return rtnobj
 
     def get(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> FullRepository:
@@ -3330,8 +3436,11 @@ the `Location` header to make a second `GET` request.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = FullRepository.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = FullRepository.from_dict(raw_data)
         return rtnobj
 
     def get_access_restrictions(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> BranchRestrictionPolicy:
@@ -3377,8 +3486,11 @@ Lists who has access to this protected branch.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = BranchRestrictionPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = BranchRestrictionPolicy.from_dict(raw_data)
         return rtnobj
 
     def get_admin_branch_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchAdminEnforced:
@@ -3419,8 +3531,11 @@ Lists who has access to this protected branch.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
         return rtnobj
 
     def get_all_deployment_protection_rules(self, environment_name: str, repo: str, owner: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -3465,8 +3580,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_all_environments(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -3513,8 +3632,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_all_topics(self, owner: str, repo: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Topic:
         """
@@ -3555,8 +3678,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Topic.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Topic.from_dict(raw_data)
         return rtnobj
 
     def get_autolink(self, owner: str, repo: str, autolink_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Autolink:
@@ -3599,8 +3725,11 @@ Information about autolinks are only available to repository administrators.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Autolink.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Autolink.from_dict(raw_data)
         return rtnobj
 
     def get_branch(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> BranchWithProtection:
@@ -3639,8 +3768,11 @@ Information about autolinks are only available to repository administrators.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = BranchWithProtection.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = BranchWithProtection.from_dict(raw_data)
         return rtnobj
 
     def get_branch_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> BranchProtection:
@@ -3681,8 +3813,11 @@ Information about autolinks are only available to repository administrators.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = BranchProtection.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = BranchProtection.from_dict(raw_data)
         return rtnobj
 
     def get_clones(self, owner: str, repo: str, *, per: Optional[str] = "day", exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CloneTraffic:
@@ -3724,8 +3859,11 @@ Information about autolinks are only available to repository administrators.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CloneTraffic.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CloneTraffic.from_dict(raw_data)
         return rtnobj
 
     def get_collaborator_permission_level(self, owner: str, repo: str, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryCollaboratorPermission:
@@ -3774,8 +3912,11 @@ There is presently not a way to differentiate between an organization level gran
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryCollaboratorPermission.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryCollaboratorPermission.from_dict(raw_data)
         return rtnobj
 
     def get_combined_status_for_ref(self, owner: str, repo: str, ref: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CombinedCommitStatus:
@@ -3827,8 +3968,11 @@ Additionally, a combined `state` is returned. The `state` is one of:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CombinedCommitStatus.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CombinedCommitStatus.from_dict(raw_data)
         return rtnobj
 
     def get_commit(self, owner: str, repo: str, ref: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Commit:
@@ -3912,8 +4056,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Commit.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Commit.from_dict(raw_data)
         return rtnobj
 
     def get_commit_comment(self, owner: str, repo: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CommitComment:
@@ -3961,8 +4108,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CommitComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CommitComment.from_dict(raw_data)
         return rtnobj
 
     def get_commit_signature_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchAdminEnforced:
@@ -4008,8 +4158,11 @@ When authenticated with admin or owner permissions to the repository, you can us
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
         return rtnobj
 
     def get_community_profile_metrics(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CommunityProfile:
@@ -4059,8 +4212,11 @@ the recommended community health files are present. For more information, see
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CommunityProfile.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CommunityProfile.from_dict(raw_data)
         return rtnobj
 
     def get_content(self, owner: str, repo: str, path: str, *, ref: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Union[List[Dict[str, Any]], ContentFile, ContentSymlink, ContentSubmodule]:
@@ -4127,8 +4283,12 @@ string and the `encoding` field will be `"none"`. To get the contents of these l
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[List[Dict[str, Any]], ContentFile, ContentSymlink, ContentSubmodule])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[List[Dict[str, Any]], ContentFile, ContentSymlink, ContentSubmodule])
+        return rtnval
 
     def get_custom_deployment_protection_rule(self, owner: str, repo: str, environment_name: str, protection_rule_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DeploymentProtectionRule:
         """
@@ -4173,8 +4333,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeploymentProtectionRule.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeploymentProtectionRule.from_dict(raw_data)
         return rtnobj
 
     def get_deploy_key(self, owner: str, repo: str, key_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DeployKey:
@@ -4213,8 +4376,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeployKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeployKey.from_dict(raw_data)
         return rtnobj
 
     def get_deployment(self, owner: str, repo: str, deployment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Deployment:
@@ -4253,8 +4419,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Deployment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Deployment.from_dict(raw_data)
         return rtnobj
 
     def get_deployment_branch_policy(self, owner: str, repo: str, environment_name: str, branch_policy_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DeploymentBranchPolicy:
@@ -4300,8 +4469,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
         return rtnobj
 
     def get_deployment_status(self, owner: str, repo: str, deployment_id: int, status_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DeploymentStatus:
@@ -4343,8 +4515,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeploymentStatus.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeploymentStatus.from_dict(raw_data)
         return rtnobj
 
     def get_environment(self, owner: str, repo: str, environment_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Environment:
@@ -4390,8 +4565,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Environment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Environment.from_dict(raw_data)
         return rtnobj
 
     def get_latest_pages_build(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PageBuild:
@@ -4433,8 +4611,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PageBuild.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PageBuild.from_dict(raw_data)
         return rtnobj
 
     def get_latest_release(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Release:
@@ -4476,8 +4657,11 @@ The latest release is the most recent non-prerelease, non-draft release, sorted 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Release.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Release.from_dict(raw_data)
         return rtnobj
 
     def get_org_rule_suite(self, org: str, rule_suite_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RuleSuite:
@@ -4518,8 +4702,11 @@ For more information, see "[Managing rulesets for repositories in your organizat
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RuleSuite.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RuleSuite.from_dict(raw_data)
         return rtnobj
 
     def get_org_rule_suites(self, org: str, *, ref: Optional[str] = None, repository_name: Optional[str] = None, time_period: Optional[str] = "day", actor_name: Optional[str] = None, rule_suite_result: Optional[str] = "all", per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -4573,8 +4760,11 @@ For more information, see "[Managing rulesets for repositories in your organizat
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_org_ruleset(self, org: str, ruleset_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryRuleset:
@@ -4617,8 +4807,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryRuleset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryRuleset.from_dict(raw_data)
         return rtnobj
 
     def get_pages(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Page:
@@ -4660,8 +4853,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Page.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Page.from_dict(raw_data)
         return rtnobj
 
     def get_pages_build(self, owner: str, repo: str, build_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PageBuild:
@@ -4704,8 +4900,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PageBuild.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PageBuild.from_dict(raw_data)
         return rtnobj
 
     def get_pages_deployment(self, owner: str, repo: str, pages_deployment_id: Union[int, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagesDeploymentStatus:
@@ -4748,8 +4947,11 @@ The authenticated user must have read permission for the GitHub Pages site.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PagesDeploymentStatus.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PagesDeploymentStatus.from_dict(raw_data)
         return rtnobj
 
     def get_pages_health_check(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagesHealthCheck:
@@ -4843,8 +5045,11 @@ The most recent week is seven days ago at UTC midnight to today at UTC midnight.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ParticipationStats.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ParticipationStats.from_dict(raw_data)
         return rtnobj
 
     def get_pull_request_review_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchPullRequestReview:
@@ -4885,8 +5090,11 @@ The most recent week is seven days ago at UTC midnight to today at UTC midnight.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchPullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchPullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def get_readme(self, owner: str, repo: str, *, ref: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ContentFile:
@@ -4933,8 +5141,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ContentFile.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ContentFile.from_dict(raw_data)
         return rtnobj
 
     def get_readme_in_directory(self, owner: str, repo: str, dir: str, *, ref: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ContentFile:
@@ -4982,8 +5193,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ContentFile.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ContentFile.from_dict(raw_data)
         return rtnobj
 
     def get_release(self, owner: str, repo: str, release_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Release:
@@ -5027,8 +5241,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Release.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Release.from_dict(raw_data)
         return rtnobj
 
     def get_release_asset(self, owner: str, repo: str, asset_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ReleaseAsset:
@@ -5075,8 +5292,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ReleaseAsset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ReleaseAsset.from_dict(raw_data)
         return rtnobj
 
     def get_release_by_tag(self, owner: str, repo: str, tag: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Release:
@@ -5117,8 +5337,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Release.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Release.from_dict(raw_data)
         return rtnobj
 
     def get_repo_rule_suite(self, owner: str, repo: str, rule_suite_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RuleSuite:
@@ -5160,8 +5383,11 @@ For more information, see "[Managing rulesets for a repository](https://docs.git
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RuleSuite.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RuleSuite.from_dict(raw_data)
         return rtnobj
 
     def get_repo_rule_suites(self, owner: str, repo: str, *, ref: Optional[str] = None, time_period: Optional[str] = "day", actor_name: Optional[str] = None, rule_suite_result: Optional[str] = "all", per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -5214,8 +5440,11 @@ For more information, see "[Managing rulesets for a repository](https://docs.git
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_repo_ruleset(self, owner: str, repo: str, ruleset_id: int, *, includes_parents: Optional[bool] = True, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryRuleset:
@@ -5261,8 +5490,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryRuleset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryRuleset.from_dict(raw_data)
         return rtnobj
 
     def get_repo_ruleset_version(self, owner: str, repo: str, ruleset_id: int, version_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> str:
@@ -5304,8 +5536,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = str.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = str.from_dict(raw_data)
         return rtnobj
 
     def get_status_checks_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> StatusCheckPolicy:
@@ -5346,8 +5581,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = StatusCheckPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = StatusCheckPolicy.from_dict(raw_data)
         return rtnobj
 
     def get_views(self, owner: str, repo: str, *, per: Optional[str] = "day", exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ViewTraffic:
@@ -5389,8 +5627,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ViewTraffic.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ViewTraffic.from_dict(raw_data)
         return rtnobj
 
     def get_webhook(self, owner: str, repo: str, hook_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Hook:
@@ -5431,8 +5672,11 @@ making the API request has write access to the ruleset.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Hook.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Hook.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_config_for_repo(self, owner: str, repo: str, hook_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WebhookConfig:
@@ -5475,8 +5719,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:repo_hook` 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_delivery(self, owner: str, repo: str, hook_id: int, delivery_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> HookDelivery:
@@ -5518,8 +5765,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:repo_hook` 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = HookDelivery.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = HookDelivery.from_dict(raw_data)
         return rtnobj
 
     def list_activities(self, owner: str, repo: str, *, direction: Optional[str] = "desc", per_page: Optional[int] = 30, before: Optional[str] = None, after: Optional[str] = None, ref: Optional[str] = None, actor: Optional[str] = None, time_period: Optional[str] = None, activity_type: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[Activity]:
@@ -5677,8 +5927,12 @@ The authenticated user making the request must have read access to the repositor
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_autolinks(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Autolink]:
         """
@@ -5903,11 +6157,8 @@ Returns all branches where the given commit SHA is the HEAD, or latest commit fo
             context_msg=None,
             aspects=aspects,
         )
-        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
-            items = None
-        else:
-            raw_data = resp.json()
-            items = [self._parse_item(item, List[int]) for item in raw_data]
+        raw_data = resp.json()
+        items = [self._parse_item(item, List[int]) for item in raw_data]
         return items
 
     def list_collaborators(self, owner: str, repo: str, *, affiliation: Optional[str] = "all", permission: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[Collaborator]:
@@ -6058,11 +6309,8 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
-            items = None
-        else:
-            raw_data = resp.json()
-            items = [self._parse_item(item, CommitActivity) for item in raw_data]
+        raw_data = resp.json()
+        items = [self._parse_item(item, CommitActivity) for item in raw_data]
         return items
 
     def list_commit_comments_for_repo(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[CommitComment]:
@@ -6298,12 +6546,9 @@ GitHub identifies contributors by author email address. This endpoint groups con
             context_msg=None,
             aspects=aspects,
         )
-        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
-            rtnval = None
-        else:
-            raw_data = resp.json()
-            items = [self._parse_item(item, Contributor) for item in raw_data]
-            rtnval = PagedList[Contributor](items, dict(resp.headers), raw_data)
+        raw_data = resp.json()
+        items = [self._parse_item(item, Contributor) for item in raw_data]
+        rtnval = PagedList[Contributor](items, dict(resp.headers), raw_data)
         return rtnval
 
     def list_contributors_stats(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[ContributorActivity]:
@@ -6352,11 +6597,8 @@ Returns the `total` number of commits authored by the contributor. In addition, 
             context_msg=None,
             aspects=aspects,
         )
-        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
-            items = None
-        else:
-            raw_data = resp.json()
-            items = [self._parse_item(item, ContributorActivity) for item in raw_data]
+        raw_data = resp.json()
+        items = [self._parse_item(item, ContributorActivity) for item in raw_data]
         return items
 
     def list_custom_deployment_rule_integrations(self, environment_name: str, repo: str, owner: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -6409,8 +6651,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_custom_properties_values(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[CustomPropertyValue]:
         """
@@ -6544,8 +6790,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_deployment_statuses(self, owner: str, repo: str, deployment_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[DeploymentStatus]:
         """
@@ -6980,8 +7230,11 @@ The authenticated user has explicit permission to access repositories they own, 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Dict[str, Any].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Dict[str, Any].from_dict(raw_data)
         return rtnobj
 
     def list_org_rulesets(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, targets: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[RepositoryRuleset]:
@@ -7213,11 +7466,8 @@ For example, `[2, 14, 25]` indicates that there were 25 total commits, during th
             context_msg=None,
             aspects=aspects,
         )
-        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
-            items = None
-        else:
-            raw_data = resp.json()
-            items = [self._parse_item(item, List[int]) for item in raw_data]
+        raw_data = resp.json()
+        items = [self._parse_item(item, List[int]) for item in raw_data]
         return items
 
     def list_release_assets(self, owner: str, repo: str, release_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[ReleaseAsset]:
@@ -7933,8 +8183,11 @@ Lists the people who have push access to this branch.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = MergedUpstream.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = MergedUpstream.from_dict(raw_data)
         return rtnobj
 
     def ping_webhook(self, owner: str, repo: str, hook_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -8358,7 +8611,11 @@ In order to rename the default branch, fine-grained access tokens also need the 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def replace_all_topics(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Topic:
         """
@@ -8395,8 +8652,11 @@ In order to rename the default branch, fine-grained access tokens also need the 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Topic.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Topic.from_dict(raw_data)
         return rtnobj
 
     def request_pages_build(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -8438,7 +8698,11 @@ Build requests are limited to one concurrent build per repository and one concur
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def set_admin_branch_protection(self, owner: str, repo: str, branch: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchAdminEnforced:
         """
@@ -8480,8 +8744,11 @@ Adding admin enforcement requires admin or owner permissions to the repository a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchAdminEnforced.from_dict(raw_data)
         return rtnobj
 
     def set_app_access_restrictions(self, owner: str, repo: str, branch: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Integration]:
@@ -8789,8 +9056,11 @@ Replaces the list of people that have push access to this branch. This removes a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = FullRepository.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = FullRepository.from_dict(raw_data)
         return rtnobj
 
     def update_branch_protection(self, owner: str, repo: str, branch: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranch:
@@ -8839,8 +9109,11 @@ Protecting a branch requires admin or owner permissions to the repository.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranch.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranch.from_dict(raw_data)
         return rtnobj
 
     def update_commit_comment(self, owner: str, repo: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CommitComment:
@@ -8888,8 +9161,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CommitComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CommitComment.from_dict(raw_data)
         return rtnobj
 
     def update_deployment_branch_policy(self, owner: str, repo: str, environment_name: str, branch_policy_id: int, body: DeploymentBranchPolicyNamePattern, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DeploymentBranchPolicy:
@@ -8933,8 +9209,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DeploymentBranchPolicy.from_dict(raw_data)
         return rtnobj
 
     def update_information_about_pages_site(self, owner: str, repo: str, body: Union[str, str, str, str, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -9020,8 +9299,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryInvitation.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryInvitation.from_dict(raw_data)
         return rtnobj
 
     def update_org_ruleset(self, org: str, ruleset_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryRuleset:
@@ -9061,8 +9343,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryRuleset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryRuleset.from_dict(raw_data)
         return rtnobj
 
     def update_pull_request_review_protection(self, owner: str, repo: str, branch: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ProtectedBranchPullRequestReview:
@@ -9108,8 +9393,11 @@ Updating pull request review enforcement requires admin or owner permissions to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ProtectedBranchPullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ProtectedBranchPullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def update_release(self, owner: str, repo: str, release_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Release:
@@ -9150,8 +9438,11 @@ Updating pull request review enforcement requires admin or owner permissions to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Release.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Release.from_dict(raw_data)
         return rtnobj
 
     def update_release_asset(self, owner: str, repo: str, asset_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ReleaseAsset:
@@ -9192,8 +9483,11 @@ Updating pull request review enforcement requires admin or owner permissions to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ReleaseAsset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ReleaseAsset.from_dict(raw_data)
         return rtnobj
 
     def update_repo_ruleset(self, owner: str, repo: str, ruleset_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepositoryRuleset:
@@ -9234,8 +9528,11 @@ Updating pull request review enforcement requires admin or owner permissions to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepositoryRuleset.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepositoryRuleset.from_dict(raw_data)
         return rtnobj
 
     def update_status_check_protection(self, owner: str, repo: str, branch: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> StatusCheckPolicy:
@@ -9278,8 +9575,11 @@ Updating required status checks requires admin or owner permissions to the repos
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = StatusCheckPolicy.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = StatusCheckPolicy.from_dict(raw_data)
         return rtnobj
 
     def update_webhook(self, owner: str, repo: str, hook_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Hook:
@@ -9320,8 +9620,11 @@ Updating required status checks requires admin or owner permissions to the repos
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Hook.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Hook.from_dict(raw_data)
         return rtnobj
 
     def update_webhook_config_for_repo(self, owner: str, repo: str, hook_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WebhookConfig:
@@ -9364,8 +9667,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:repo_hook`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj
 
     def upload_release_asset(self, owner: str, repo: str, release_id: int, name: str, *, label: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -9428,4 +9734,8 @@ endpoint lists the renamed filenames. For more information and help, contact [Gi
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval

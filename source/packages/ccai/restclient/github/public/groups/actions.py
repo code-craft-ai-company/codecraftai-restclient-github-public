@@ -90,7 +90,11 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def add_custom_labels_to_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -134,7 +138,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def add_repo_access_to_self_hosted_runner_group_in_org(self, org: str, runner_group_id: int, repository_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -367,7 +375,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def cancel_workflow_run(self, owner: str, repo: str, run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -457,7 +469,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_hosted_runner_for_org(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -496,7 +512,11 @@ OAuth tokens and personal access tokens (classic) need the `manage_runners:org` 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_or_update_environment_secret(self, owner: str, repo: str, environment_name: str, secret_name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -685,7 +705,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_registration_token_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -733,7 +757,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_registration_token_for_repo(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -782,7 +810,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_remove_token_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -830,7 +862,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_remove_token_for_repo(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -879,7 +915,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_repo_variable(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -922,7 +962,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_self_hosted_runner_group_for_org(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -962,7 +1006,11 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_workflow_dispatch(self, owner: str, repo: str, workflow_id: Union[int, str], body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1101,8 +1149,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsCacheList.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsCacheList.from_dict(raw_data)
         return rtnobj
 
     def delete_artifact(self, owner: str, repo: str, artifact_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1893,7 +1944,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def download_job_logs_for_workflow_run(self, owner: str, repo: str, job_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1938,7 +1993,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def download_workflow_run_attempt_logs(self, owner: str, repo: str, run_id: int, attempt_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1984,7 +2043,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def download_workflow_run_logs(self, owner: str, repo: str, run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -2029,7 +2092,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def enable_selected_repository_github_actions_organization(self, org: str, repository_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -2254,7 +2321,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def generate_runner_jitconfig_for_repo(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -2297,7 +2368,11 @@ OAuth tokens and personal access tokens (classic) need the`repo` scope to use th
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def get_actions_cache_list(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, ref: Optional[str] = None, key: Optional[str] = None, sort: Optional[str] = "last_accessed_at", direction: Optional[str] = "desc", exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsCacheList:
         """
@@ -2350,8 +2425,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsCacheList.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsCacheList.from_dict(raw_data)
         return rtnobj
 
     def get_actions_cache_usage(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsCacheUsageByRepository:
@@ -2396,8 +2474,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsCacheUsageByRepository.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsCacheUsageByRepository.from_dict(raw_data)
         return rtnobj
 
     def get_actions_cache_usage_by_repo_for_org(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -2443,8 +2524,12 @@ OAuth tokens and personal access tokens (classic) need the `read:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_actions_cache_usage_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsCacheUsageOrgEnterprise:
         """
@@ -2485,8 +2570,11 @@ OAuth tokens and personal access tokens (classic) need the `read:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsCacheUsageOrgEnterprise.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsCacheUsageOrgEnterprise.from_dict(raw_data)
         return rtnobj
 
     def get_allowed_actions_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SelectedActions:
@@ -2527,8 +2615,11 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SelectedActions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SelectedActions.from_dict(raw_data)
         return rtnobj
 
     def get_allowed_actions_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SelectedActions:
@@ -2570,8 +2661,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SelectedActions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SelectedActions.from_dict(raw_data)
         return rtnobj
 
     def get_artifact(self, owner: str, repo: str, artifact_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Artifact:
@@ -2616,8 +2710,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Artifact.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Artifact.from_dict(raw_data)
         return rtnobj
 
     def get_artifact_and_log_retention_settings_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsArtifactAndLogRetentionResponse:
@@ -2658,8 +2755,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsArtifactAndLogRetentionResponse.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsArtifactAndLogRetentionResponse.from_dict(raw_data)
         return rtnobj
 
     def get_artifact_and_log_retention_settings_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsArtifactAndLogRetentionResponse:
@@ -2701,8 +2801,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsArtifactAndLogRetentionResponse.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsArtifactAndLogRetentionResponse.from_dict(raw_data)
         return rtnobj
 
     def get_custom_oidc_sub_claim_for_repo(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OidcCustomSubRepo:
@@ -2744,8 +2847,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OidcCustomSubRepo.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OidcCustomSubRepo.from_dict(raw_data)
         return rtnobj
 
     def get_environment_public_key(self, owner: str, repo: str, environment_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsPublicKey:
@@ -2791,8 +2897,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_environment_secret(self, owner: str, repo: str, environment_name: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsSecret:
@@ -2838,8 +2947,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsSecret.from_dict(raw_data)
         return rtnobj
 
     def get_environment_variable(self, owner: str, repo: str, environment_name: str, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsVariable:
@@ -2885,8 +2997,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsVariable.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsVariable.from_dict(raw_data)
         return rtnobj
 
     def get_fork_pr_contributor_approval_permissions_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsForkPrContributorApproval:
@@ -2927,8 +3042,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsForkPrContributorApproval.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsForkPrContributorApproval.from_dict(raw_data)
         return rtnobj
 
     def get_fork_pr_contributor_approval_permissions_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsForkPrContributorApproval:
@@ -2970,8 +3088,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsForkPrContributorApproval.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsForkPrContributorApproval.from_dict(raw_data)
         return rtnobj
 
     def get_github_actions_default_workflow_permissions_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsGetDefaultWorkflowPermissions:
@@ -3014,8 +3135,11 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsGetDefaultWorkflowPermissions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsGetDefaultWorkflowPermissions.from_dict(raw_data)
         return rtnobj
 
     def get_github_actions_default_workflow_permissions_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsGetDefaultWorkflowPermissions:
@@ -3059,8 +3183,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsGetDefaultWorkflowPermissions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsGetDefaultWorkflowPermissions.from_dict(raw_data)
         return rtnobj
 
     def get_github_actions_permissions_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsOrganizationPermissions:
@@ -3101,8 +3228,11 @@ OAuth tokens and personal access tokens (classic) need the `admin:org` scope to 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsOrganizationPermissions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsOrganizationPermissions.from_dict(raw_data)
         return rtnobj
 
     def get_github_actions_permissions_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsRepositoryPermissions:
@@ -3144,8 +3274,11 @@ OAuth tokens and personal access tokens (classic) need the `repo` scope to use t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsRepositoryPermissions.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsRepositoryPermissions.from_dict(raw_data)
         return rtnobj
 
     def get_hosted_runner_for_org(self, org: str, hosted_runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsHostedRunner:
@@ -3187,8 +3320,11 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsHostedRunner.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsHostedRunner.from_dict(raw_data)
         return rtnobj
 
     def get_hosted_runners_github_owned_images_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -3227,8 +3363,12 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_hosted_runners_limits_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsHostedRunnerLimits:
         """
@@ -3266,8 +3406,11 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsHostedRunnerLimits.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsHostedRunnerLimits.from_dict(raw_data)
         return rtnobj
 
     def get_hosted_runners_machine_specs_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -3306,8 +3449,12 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_hosted_runners_partner_images_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -3345,8 +3492,12 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_hosted_runners_platforms_for_org(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -3384,8 +3535,12 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_job_for_workflow_run(self, owner: str, repo: str, job_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Job:
         """
@@ -3429,8 +3584,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Job.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Job.from_dict(raw_data)
         return rtnobj
 
     def get_org_public_key(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsPublicKey:
@@ -3474,8 +3632,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_org_secret(self, org: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrganizationActionsSecret:
@@ -3519,8 +3680,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationActionsSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationActionsSecret.from_dict(raw_data)
         return rtnobj
 
     def get_org_variable(self, org: str, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrganizationActionsVariable:
@@ -3564,8 +3728,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationActionsVariable.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationActionsVariable.from_dict(raw_data)
         return rtnobj
 
     def get_private_repo_fork_pr_workflows_settings_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsForkPrWorkflowsPrivateRepos:
@@ -3604,8 +3771,11 @@ OAuth tokens and personal access tokens (classic) need the`admin:org` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsForkPrWorkflowsPrivateRepos.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsForkPrWorkflowsPrivateRepos.from_dict(raw_data)
         return rtnobj
 
     def get_private_repo_fork_pr_workflows_settings_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsForkPrWorkflowsPrivateRepos:
@@ -3647,8 +3817,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsForkPrWorkflowsPrivateRepos.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsForkPrWorkflowsPrivateRepos.from_dict(raw_data)
         return rtnobj
 
     def get_repo_public_key(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsPublicKey:
@@ -3693,8 +3866,11 @@ If the repository is private, OAuth tokens and personal access tokens (classic) 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_repo_secret(self, owner: str, repo: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsSecret:
@@ -3739,8 +3915,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsSecret.from_dict(raw_data)
         return rtnobj
 
     def get_repo_variable(self, owner: str, repo: str, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsVariable:
@@ -3785,8 +3964,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsVariable.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsVariable.from_dict(raw_data)
         return rtnobj
 
     def get_self_hosted_runner_for_org(self, org: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Runner:
@@ -3830,8 +4012,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Runner.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Runner.from_dict(raw_data)
         return rtnobj
 
     def get_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Runner:
@@ -3876,8 +4061,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Runner.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Runner.from_dict(raw_data)
         return rtnobj
 
     def get_self_hosted_runner_group_for_org(self, org: str, runner_group_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RunnerGroupsOrg:
@@ -3919,8 +4107,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RunnerGroupsOrg.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RunnerGroupsOrg.from_dict(raw_data)
         return rtnobj
 
     def get_self_hosted_runners_permissions_organization(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SelfHostedRunnersSettings:
@@ -3961,8 +4152,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SelfHostedRunnersSettings.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SelfHostedRunnersSettings.from_dict(raw_data)
         return rtnobj
 
     def get_workflow(self, owner: str, repo: str, workflow_id: Union[int, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Workflow:
@@ -4008,8 +4202,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Workflow.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Workflow.from_dict(raw_data)
         return rtnobj
 
     def get_workflow_access_to_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ActionsWorkflowAccessToRepository:
@@ -4053,8 +4250,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsWorkflowAccessToRepository.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsWorkflowAccessToRepository.from_dict(raw_data)
         return rtnobj
 
     def get_workflow_run(self, owner: str, repo: str, run_id: int, *, exclude_pull_requests: Optional[bool] = False, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WorkflowRun:
@@ -4101,8 +4301,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WorkflowRun.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WorkflowRun.from_dict(raw_data)
         return rtnobj
 
     def get_workflow_run_attempt(self, owner: str, repo: str, run_id: int, attempt_number: int, *, exclude_pull_requests: Optional[bool] = False, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WorkflowRun:
@@ -4150,8 +4353,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WorkflowRun.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WorkflowRun.from_dict(raw_data)
         return rtnobj
 
     def get_workflow_run_usage(self, owner: str, repo: str, run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WorkflowRunUsage:
@@ -4199,8 +4405,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WorkflowRunUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WorkflowRunUsage.from_dict(raw_data)
         return rtnobj
 
     def get_workflow_usage(self, owner: str, repo: str, workflow_id: Union[int, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WorkflowUsage:
@@ -4250,8 +4459,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WorkflowUsage.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WorkflowUsage.from_dict(raw_data)
         return rtnobj
 
     def list_artifacts_for_repo(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, name: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -4301,8 +4513,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_environment_secrets(self, owner: str, repo: str, environment_name: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4351,8 +4567,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_environment_variables(self, owner: str, repo: str, environment_name: str, *, per_page: Optional[int] = 10, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4400,8 +4620,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_github_hosted_runners_in_group_for_org(self, org: str, runner_group_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4446,8 +4670,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_hosted_runners_for_org(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4491,8 +4719,12 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runner:or
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_jobs_for_workflow_run(self, owner: str, repo: str, run_id: int, *, filter: Optional[str] = "latest", per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4543,8 +4775,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_jobs_for_workflow_run_attempt(self, owner: str, repo: str, run_id: int, attempt_number: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4594,8 +4830,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_labels_for_self_hosted_runner_for_org(self, org: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -4638,7 +4878,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def list_labels_for_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -4682,7 +4926,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def list_org_secrets(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4729,8 +4977,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_org_variables(self, org: str, *, per_page: Optional[int] = 10, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4776,8 +5028,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_pending_deployments_for_run(self, owner: str, repo: str, run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[PendingDeployment]:
         """
@@ -4868,8 +5124,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_organization_secrets(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4917,8 +5177,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_organization_variables(self, owner: str, repo: str, *, per_page: Optional[int] = 10, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -4965,8 +5229,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_secrets(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5014,8 +5282,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_variables(self, owner: str, repo: str, *, per_page: Optional[int] = 10, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5062,8 +5334,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_workflows(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5110,8 +5386,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_reviews_for_run(self, owner: str, repo: str, run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[EnvironmentApprovals]:
         """
@@ -5292,8 +5572,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_selected_repos_for_org_variable(self, org: str, name: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5341,8 +5625,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_selected_repositories_enabled_github_actions_organization(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5386,8 +5674,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_selected_repositories_self_hosted_runners_organization(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5431,8 +5723,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_self_hosted_runner_groups_for_org(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, visible_to_repository: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5478,8 +5774,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_self_hosted_runners_for_org(self, org: str, *, name: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5527,8 +5827,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_self_hosted_runners_for_repo(self, owner: str, repo: str, *, name: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5577,8 +5881,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_self_hosted_runners_in_group_for_org(self, org: str, runner_group_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5623,8 +5931,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_workflow_run_artifacts(self, owner: str, repo: str, run_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, name: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5674,8 +5986,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_workflow_runs(self, owner: str, repo: str, workflow_id: Union[int, str], *, actor: Optional[str] = None, branch: Optional[str] = None, event: Optional[str] = None, status: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, created: Optional[str] = None, exclude_pull_requests: Optional[bool] = False, check_suite_id: Optional[int] = None, head_sha: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5741,8 +6057,12 @@ This endpoint will return up to 1,000 results for each search when using the fol
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_workflow_runs_for_repo(self, owner: str, repo: str, *, actor: Optional[str] = None, branch: Optional[str] = None, event: Optional[str] = None, status: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, created: Optional[str] = None, exclude_pull_requests: Optional[bool] = False, check_suite_id: Optional[int] = None, head_sha: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -5807,8 +6127,12 @@ This endpoint will return up to 1,000 results for each search when using the fol
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def re_run_job_for_workflow_run(self, owner: str, repo: str, job_id: int, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -5850,7 +6174,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def re_run_workflow(self, owner: str, repo: str, run_id: int, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -5892,7 +6220,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def re_run_workflow_failed_jobs(self, owner: str, repo: str, run_id: int, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -5934,7 +6266,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_all_custom_labels_from_self_hosted_runner_for_org(self, org: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -5978,7 +6314,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_all_custom_labels_from_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6023,7 +6363,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_custom_label_from_self_hosted_runner_for_org(self, org: str, runner_id: int, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6071,7 +6415,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_custom_label_from_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6120,7 +6468,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_repo_access_to_self_hosted_runner_group_in_org(self, org: str, runner_group_id: int, repository_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6629,7 +6981,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def set_custom_labels_for_self_hosted_runner_for_repo(self, owner: str, repo: str, runner_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6674,7 +7030,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def set_custom_oidc_sub_claim_for_repo(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -6715,7 +7075,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def set_fork_pr_contributor_approval_permissions_organization(self, org: str, body: ActionsForkPrContributorApproval, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -7530,8 +7894,11 @@ OAuth app tokens and personal access tokens (classic) need the `manage_runners:o
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ActionsHostedRunner.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ActionsHostedRunner.from_dict(raw_data)
         return rtnobj
 
     def update_org_variable(self, org: str, name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -7668,6 +8035,9 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RunnerGroupsOrg.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RunnerGroupsOrg.from_dict(raw_data)
         return rtnobj

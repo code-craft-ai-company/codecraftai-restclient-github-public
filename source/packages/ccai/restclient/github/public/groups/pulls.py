@@ -113,7 +113,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_reply_for_review_comment(self, owner: str, repo: str, pull_number: int, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -164,7 +168,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_review(self, owner: str, repo: str, pull_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReview:
         """
@@ -220,8 +228,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def create_review_comment(self, owner: str, repo: str, pull_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -276,7 +287,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_pending_review(self, owner: str, repo: str, pull_number: int, review_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReview:
         """
@@ -324,8 +339,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def delete_review_comment(self, owner: str, repo: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -421,8 +439,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def get(self, owner: str, repo: str, pull_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequest:
@@ -485,8 +506,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequest.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequest.from_dict(raw_data)
         return rtnobj
 
     def get_review(self, owner: str, repo: str, pull_number: int, review_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReview:
@@ -535,8 +559,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def get_review_comment(self, owner: str, repo: str, comment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReviewComment:
@@ -584,8 +611,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReviewComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReviewComment.from_dict(raw_data)
         return rtnobj
 
     def list(self, owner: str, repo: str, *, state: Optional[str] = "open", head: Optional[str] = None, base: Optional[str] = None, sort: Optional[str] = "created", direction: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[PullRequestSimple]:
@@ -863,8 +893,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReviewRequest.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReviewRequest.from_dict(raw_data)
         return rtnobj
 
     def list_review_comments(self, owner: str, repo: str, pull_number: int, *, sort: Optional[str] = "created", direction: Optional[str] = None, since: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[PullRequestReviewComment]:
@@ -1081,8 +1114,11 @@ This endpoint triggers [notifications](https://docs.github.com/github/managing-s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestMergeResult.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestMergeResult.from_dict(raw_data)
         return rtnobj
 
     def remove_requested_reviewers(self, owner: str, repo: str, pull_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestSimple:
@@ -1123,8 +1159,11 @@ This endpoint triggers [notifications](https://docs.github.com/github/managing-s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestSimple.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestSimple.from_dict(raw_data)
         return rtnobj
 
     def request_reviewers(self, owner: str, repo: str, pull_number: int, body: Union[str, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1166,7 +1205,11 @@ This endpoint triggers [notifications](https://docs.github.com/github/managing-s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def submit_review(self, owner: str, repo: str, pull_number: int, review_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReview:
         """
@@ -1214,8 +1257,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def update(self, owner: str, repo: str, pull_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequest:
@@ -1265,8 +1311,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequest.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequest.from_dict(raw_data)
         return rtnobj
 
     def update_branch(self, owner: str, repo: str, pull_number: int, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1360,8 +1409,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReview.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReview.from_dict(raw_data)
         return rtnobj
 
     def update_review_comment(self, owner: str, repo: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PullRequestReviewComment:
@@ -1409,6 +1461,9 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PullRequestReviewComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PullRequestReviewComment.from_dict(raw_data)
         return rtnobj

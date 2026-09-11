@@ -51,8 +51,11 @@ class ReactionsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_issue(self, owner: str, repo: str, issue_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
@@ -93,8 +96,11 @@ class ReactionsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_issue_comment(self, owner: str, repo: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
@@ -135,8 +141,11 @@ class ReactionsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_pull_request_review_comment(self, owner: str, repo: str, comment_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
@@ -177,8 +186,11 @@ class ReactionsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_release(self, owner: str, repo: str, release_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
@@ -219,8 +231,11 @@ class ReactionsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_team_discussion_comment_in_org(self, org: str, team_slug: str, discussion_number: int, comment_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
@@ -269,8 +284,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_team_discussion_comment_legacy(self, team_id: int, discussion_number: int, comment_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -318,7 +336,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_for_team_discussion_in_org(self, org: str, team_slug: str, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Reaction:
         """
@@ -365,8 +387,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Reaction.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Reaction.from_dict(raw_data)
         return rtnobj
 
     def create_for_team_discussion_legacy(self, team_id: int, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -413,7 +438,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_for_commit_comment(self, owner: str, repo: str, comment_id: int, reaction_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """

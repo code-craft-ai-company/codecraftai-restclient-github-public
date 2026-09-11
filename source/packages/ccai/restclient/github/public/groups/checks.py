@@ -60,7 +60,11 @@ In a check suite, GitHub limits the number of check runs with the same name to 1
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_suite(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CheckSuite:
         """
@@ -104,8 +108,11 @@ OAuth apps and personal access tokens (classic) cannot use this endpoint.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckSuite.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckSuite.from_dict(raw_data)
         return rtnobj
 
     def get(self, owner: str, repo: str, check_run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CheckRun:
@@ -151,8 +158,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckRun.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckRun.from_dict(raw_data)
         return rtnobj
 
     def get_suite(self, owner: str, repo: str, check_suite_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CheckSuite:
@@ -198,8 +208,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckSuite.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckSuite.from_dict(raw_data)
         return rtnobj
 
     def list_annotations(self, owner: str, repo: str, check_run_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[CheckAnnotation]:
@@ -308,8 +321,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_for_suite(self, owner: str, repo: str, check_suite_id: int, *, check_name: Optional[str] = None, status: Optional[str] = None, filter: Optional[str] = "latest", per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -364,8 +381,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_suites_for_ref(self, owner: str, repo: str, ref: str, *, app_id: Optional[int] = None, check_name: Optional[str] = None, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -418,8 +439,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def rerequest_run(self, owner: str, repo: str, check_run_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -461,7 +486,11 @@ For more information about how to re-run GitHub Actions jobs, see "[Re-run a job
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def rerequest_suite(self, owner: str, repo: str, check_suite_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -501,7 +530,11 @@ For more information about how to re-run GitHub Actions jobs, see "[Re-run a job
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def set_suites_preferences(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CheckSuitePreference:
         """
@@ -541,8 +574,11 @@ You must have admin permissions in the repository to set preferences for check s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckSuitePreference.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckSuitePreference.from_dict(raw_data)
         return rtnobj
 
     def update(self, owner: str, repo: str, check_run_id: int, body: Union[str, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CheckRun:
@@ -588,6 +624,9 @@ OAuth apps and personal access tokens (classic) cannot use this endpoint.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CheckRun.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CheckRun.from_dict(raw_data)
         return rtnobj

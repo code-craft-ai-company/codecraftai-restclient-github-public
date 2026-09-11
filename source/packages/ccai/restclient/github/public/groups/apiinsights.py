@@ -62,8 +62,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_subject_stats(self, org: str, min_timestamp: str, *, max_timestamp: Optional[str] = None, page: Optional[int] = 1, per_page: Optional[int] = 30, direction: Optional[str] = "desc", sort: Optional[List[str]] = None, subject_name_substring: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -116,8 +119,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_summary_stats(self, org: str, min_timestamp: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ApiInsightsSummaryStats:
@@ -160,8 +166,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
         return rtnobj
 
     def get_summary_stats_by_actor(self, org: str, actor_type: str, actor_id: int, min_timestamp: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ApiInsightsSummaryStats:
@@ -206,8 +215,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
         return rtnobj
 
     def get_summary_stats_by_user(self, org: str, user_id: str, min_timestamp: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ApiInsightsSummaryStats:
@@ -251,8 +263,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ApiInsightsSummaryStats.from_dict(raw_data)
         return rtnobj
 
     def get_time_stats(self, org: str, min_timestamp: str, timestamp_increment: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -297,8 +312,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_time_stats_by_actor(self, org: str, actor_type: str, actor_id: int, min_timestamp: str, timestamp_increment: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -345,8 +363,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_time_stats_by_user(self, org: str, user_id: str, min_timestamp: str, timestamp_increment: str, *, max_timestamp: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -392,8 +413,11 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_user_stats(self, org: str, user_id: str, min_timestamp: str, *, max_timestamp: Optional[str] = None, page: Optional[int] = 1, per_page: Optional[int] = 30, direction: Optional[str] = "desc", sort: Optional[List[str]] = None, actor_name_substring: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -447,6 +471,9 @@ class ApiInsightsApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj

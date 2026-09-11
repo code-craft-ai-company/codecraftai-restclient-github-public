@@ -52,7 +52,11 @@ class GitApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_commit(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -121,7 +125,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_ref(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -160,7 +168,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_tag(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -229,7 +241,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_tree(self, owner: str, repo: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -272,7 +288,11 @@ Returns an error if you try to delete a file that does not exist.
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_ref(self, owner: str, repo: str, ref: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -363,8 +383,11 @@ This endpoint supports the following custom media types. For more information, s
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Blob.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Blob.from_dict(raw_data)
         return rtnobj
 
     def get_commit(self, owner: str, repo: str, commit_sha: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GitCommit:
@@ -437,8 +460,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GitCommit.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GitCommit.from_dict(raw_data)
         return rtnobj
 
     def get_ref(self, owner: str, repo: str, ref: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GitRef:
@@ -482,8 +508,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GitRef.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GitRef.from_dict(raw_data)
         return rtnobj
 
     def get_tag(self, owner: str, repo: str, tag_sha: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GitTag:
@@ -552,8 +581,11 @@ These are the possible values for `reason` in the `verification` object:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GitTag.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GitTag.from_dict(raw_data)
         return rtnobj
 
     def get_tree(self, owner: str, repo: str, tree_sha: str, *, recursive: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GitTree:
@@ -601,8 +633,11 @@ If `truncated` is `true` in the response then the number of items in the `tree` 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GitTree.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GitTree.from_dict(raw_data)
         return rtnobj
 
     def list_matching_refs(self, owner: str, repo: str, ref: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[GitRef]:
@@ -692,6 +727,9 @@ If you request matching references for a branch named `feature` but the branch `
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GitRef.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GitRef.from_dict(raw_data)
         return rtnobj

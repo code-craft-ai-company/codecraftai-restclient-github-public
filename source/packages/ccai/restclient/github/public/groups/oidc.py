@@ -51,8 +51,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:org` scope 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OidcCustomSub.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OidcCustomSub.from_dict(raw_data)
         return rtnobj
 
     def update_oidc_custom_sub_template_for_org(self, org: str, body: OidcCustomSub, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -93,4 +96,8 @@ OAuth app tokens and personal access tokens (classic) need the `write:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval

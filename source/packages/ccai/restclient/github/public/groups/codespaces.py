@@ -155,8 +155,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesPermissionsCheckForDevcontainer.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesPermissionsCheckForDevcontainer.from_dict(raw_data)
         return rtnobj
 
     def codespace_machines_for_authenticated_user(self, codespace_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -197,8 +200,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def create_for_authenticated_user(self, body: Union[Dict[str, Any], Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -836,8 +843,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def get_export_details_for_authenticated_user(self, codespace_name: str, export_id: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespaceExportDetails:
         """
@@ -878,8 +889,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespaceExportDetails.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespaceExportDetails.from_dict(raw_data)
         return rtnobj
 
     def get_for_authenticated_user(self, codespace_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Codespace:
@@ -920,8 +934,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Codespace.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Codespace.from_dict(raw_data)
         return rtnobj
 
     def get_org_public_key(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespacesPublicKey:
@@ -961,8 +978,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_org_secret(self, org: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespacesOrgSecret:
@@ -1004,8 +1024,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesOrgSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesOrgSecret.from_dict(raw_data)
         return rtnobj
 
     def get_public_key_for_authenticated_user(self, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespacesUserPublicKey:
@@ -1044,8 +1067,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` or `c
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesUserPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesUserPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_repo_public_key(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespacesPublicKey:
@@ -1088,8 +1114,11 @@ If the repository is private, OAuth app tokens and personal access tokens (class
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_repo_secret(self, owner: str, repo: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> RepoCodespacesSecret:
@@ -1132,8 +1161,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = RepoCodespacesSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = RepoCodespacesSecret.from_dict(raw_data)
         return rtnobj
 
     def get_secret_for_authenticated_user(self, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodespacesSecret:
@@ -1176,8 +1208,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` or `c
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodespacesSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodespacesSecret.from_dict(raw_data)
         return rtnobj
 
     def list_devcontainers_in_repository_for_authenticated_user(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -1224,8 +1259,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_for_authenticated_user(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, repository_id: Optional[int] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1267,8 +1306,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_in_organization(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1312,8 +1355,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_in_repository_for_authenticated_user(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1358,8 +1405,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_org_secrets(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1404,8 +1455,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_secrets(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1451,8 +1506,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repositories_for_secret_for_authenticated_user(self, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1494,8 +1553,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` or `c
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_secrets_for_authenticated_user(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1538,8 +1601,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` or `c
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_selected_repos_for_org_secret(self, org: str, secret_name: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1585,8 +1652,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def pre_flight_with_repo_for_authenticated_user(self, owner: str, repo: str, *, ref: Optional[str] = None, client_ip: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1631,8 +1702,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def publish_for_authenticated_user(self, codespace_name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1676,7 +1751,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def remove_repository_for_secret_for_authenticated_user(self, secret_name: str, repository_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1818,8 +1897,12 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def set_codespaces_access(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -2042,8 +2125,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Codespace.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Codespace.from_dict(raw_data)
         return rtnobj
 
     def stop_for_authenticated_user(self, codespace_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Codespace:
@@ -2084,8 +2170,11 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Codespace.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Codespace.from_dict(raw_data)
         return rtnobj
 
     def stop_in_organization(self, org: str, username: str, codespace_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Codespace:
@@ -2128,8 +2217,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Codespace.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Codespace.from_dict(raw_data)
         return rtnobj
 
     def update_for_authenticated_user(self, codespace_name: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Codespace:
@@ -2172,6 +2264,9 @@ OAuth app tokens and personal access tokens (classic) need the `codespace` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Codespace.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Codespace.from_dict(raw_data)
         return rtnobj

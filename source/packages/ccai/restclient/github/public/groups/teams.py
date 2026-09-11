@@ -126,8 +126,11 @@ If the user is already a member of the team, this endpoint will update the role 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamMembership.from_dict(raw_data)
         return rtnobj
 
     def add_or_update_membership_for_user_legacy(self, team_id: int, username: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamMembership:
@@ -179,8 +182,11 @@ If the user is already a member of the team, this endpoint will update the role 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamMembership.from_dict(raw_data)
         return rtnobj
 
     def add_or_update_project_permissions_in_org(self, org: str, team_slug: str, project_id: int, body: Optional[Dict[str, Any]], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -413,8 +419,11 @@ Note that, if you choose not to pass any parameters, you'll need to set `Content
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamProject.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamProject.from_dict(raw_data)
         return rtnobj
 
     def check_permissions_for_project_legacy(self, team_id: int, project_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamProject:
@@ -456,8 +465,11 @@ Note that, if you choose not to pass any parameters, you'll need to set `Content
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamProject.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamProject.from_dict(raw_data)
         return rtnobj
 
     def check_permissions_for_repo_in_org(self, org: str, team_slug: str, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamRepository:
@@ -604,7 +616,11 @@ When you create a new team, you automatically become a team maintainer without e
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_discussion_comment_in_org(self, org: str, team_slug: str, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -651,7 +667,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_discussion_comment_legacy(self, team_id: int, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -697,7 +717,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_discussion_in_org(self, org: str, team_slug: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -743,7 +767,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_discussion_legacy(self, team_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -788,7 +816,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_discussion_comment_in_org(self, org: str, team_slug: str, discussion_number: int, comment_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1121,8 +1153,11 @@ If you are an organization owner, deleting a parent team will delete all of its 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamFull.from_dict(raw_data)
         return rtnobj
 
     def get_discussion_comment_in_org(self, org: str, team_slug: str, discussion_number: int, comment_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussionComment:
@@ -1169,8 +1204,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:discussion`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussionComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussionComment.from_dict(raw_data)
         return rtnobj
 
     def get_discussion_comment_legacy(self, team_id: int, discussion_number: int, comment_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussionComment:
@@ -1216,8 +1254,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:discussion`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussionComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussionComment.from_dict(raw_data)
         return rtnobj
 
     def get_discussion_in_org(self, org: str, team_slug: str, discussion_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussion:
@@ -1263,8 +1304,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:discussion`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussion.from_dict(raw_data)
         return rtnobj
 
     def get_discussion_legacy(self, team_id: int, discussion_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussion:
@@ -1309,8 +1353,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:discussion`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussion.from_dict(raw_data)
         return rtnobj
 
     def get_legacy(self, team_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamFull:
@@ -1350,8 +1397,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:discussion`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamFull.from_dict(raw_data)
         return rtnobj
 
     def get_member_legacy(self, team_id: int, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1449,8 +1499,11 @@ The `role` for organization owners is set to `maintainer`. For more information 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamMembership.from_dict(raw_data)
         return rtnobj
 
     def get_membership_for_user_legacy(self, team_id: int, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamMembership:
@@ -1500,8 +1553,11 @@ The `role` for organization owners is set to `maintainer`. For more information 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamMembership.from_dict(raw_data)
         return rtnobj
 
     def list(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[Team]:
@@ -2676,8 +2732,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussionComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussionComment.from_dict(raw_data)
         return rtnobj
 
     def update_discussion_comment_legacy(self, team_id: int, discussion_number: int, comment_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussionComment:
@@ -2723,8 +2782,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussionComment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussionComment.from_dict(raw_data)
         return rtnobj
 
     def update_discussion_in_org(self, org: str, team_slug: str, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussion:
@@ -2770,8 +2832,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussion.from_dict(raw_data)
         return rtnobj
 
     def update_discussion_legacy(self, team_id: int, discussion_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamDiscussion:
@@ -2816,8 +2881,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamDiscussion.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamDiscussion.from_dict(raw_data)
         return rtnobj
 
     def update_in_org(self, org: str, team_slug: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamFull:
@@ -2860,8 +2928,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:discussion
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamFull.from_dict(raw_data)
         return rtnobj
 
     def update_legacy(self, team_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> TeamFull:
@@ -2906,6 +2977,9 @@ To edit a team, the authenticated user must either be an organization owner or a
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = TeamFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = TeamFull.from_dict(raw_data)
         return rtnobj

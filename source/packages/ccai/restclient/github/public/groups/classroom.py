@@ -54,8 +54,11 @@ class ClassroomApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Classroom.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Classroom.from_dict(raw_data)
         return rtnobj
 
     def get_an_assignment(self, assignment_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> ClassroomAssignment:
@@ -94,8 +97,11 @@ class ClassroomApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = ClassroomAssignment.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = ClassroomAssignment.from_dict(raw_data)
         return rtnobj
 
     def list_accepted_assignments_for_an_assignment(self, assignment_id: int, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[ClassroomAcceptedAssignment]:

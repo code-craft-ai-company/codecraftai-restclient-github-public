@@ -153,7 +153,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_configuration_for_enterprise(self, enterprise: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -195,7 +199,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:enterprise
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_configuration(self, org: str, configuration_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -383,8 +391,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
         return rtnobj
 
     def get_configuration_for_repository(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeSecurityConfigurationForRepository:
@@ -475,8 +486,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:org` scope 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_default_configurations_for_enterprise(self, enterprise: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[Dict[str, Any]]:
@@ -519,8 +533,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:enterprise`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = List[Dict[str, Any]].from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = List[Dict[str, Any]].from_dict(raw_data)
         return rtnobj
 
     def get_single_configuration_for_enterprise(self, enterprise: str, configuration_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeSecurityConfiguration:
@@ -564,8 +581,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:enterprise`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
         return rtnobj
 
     def list_configurations_for_enterprise(self, enterprise: str, *, per_page: Optional[int] = 30, before: Optional[str] = None, after: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[CodeSecurityConfiguration]:
@@ -823,8 +843,12 @@ OAuth app tokens and personal access tokens (classic) need the `write:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def set_configuration_as_default_for_enterprise(self, enterprise: str, configuration_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -869,8 +893,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:enterprise
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def update_configuration(self, org: str, configuration_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CodeSecurityConfiguration:
         """
@@ -961,6 +989,9 @@ OAuth app tokens and personal access tokens (classic) need the `admin:enterprise
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CodeSecurityConfiguration.from_dict(raw_data)
         return rtnobj

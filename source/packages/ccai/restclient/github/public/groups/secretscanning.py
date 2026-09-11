@@ -59,8 +59,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SecretScanningPushProtectionBypass.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SecretScanningPushProtectionBypass.from_dict(raw_data)
         return rtnobj
 
     def get_alert(self, owner: str, repo: str, alert_number: int, *, hide_secret: Optional[bool] = False, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SecretScanningAlert:
@@ -107,8 +110,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `securi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SecretScanningAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SecretScanningAlert.from_dict(raw_data)
         return rtnobj
 
     def get_scan_history(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SecretScanningScanHistory:
@@ -150,8 +156,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `securi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SecretScanningScanHistory.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SecretScanningScanHistory.from_dict(raw_data)
         return rtnobj
 
     def list_alerts_for_enterprise(self, enterprise: str, *, state: Optional[str] = None, secret_type: Optional[str] = None, resolution: Optional[str] = None, sort: Optional[str] = "created", direction: Optional[str] = "desc", per_page: Optional[int] = 30, before: Optional[str] = None, after: Optional[str] = None, validity: Optional[str] = None, is_publicly_leaked: Optional[bool] = False, is_multi_repo: Optional[bool] = False, hide_secret: Optional[bool] = False, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[OrganizationSecretScanningAlert]:
@@ -457,8 +466,11 @@ Personal access tokens (classic) need the `write:org` scope to use this endpoint
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SecretScanningPatternConfiguration.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SecretScanningPatternConfiguration.from_dict(raw_data)
         return rtnobj
 
     def update_alert(self, owner: str, repo: str, alert_number: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SecretScanningAlert:
@@ -503,8 +515,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` or `securi
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SecretScanningAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SecretScanningAlert.from_dict(raw_data)
         return rtnobj
 
     def update_org_pattern_configs(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
@@ -545,5 +560,9 @@ Personal access tokens (classic) need the `write:org` scope to use this endpoint
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval

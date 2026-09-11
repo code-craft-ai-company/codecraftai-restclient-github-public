@@ -54,7 +54,11 @@ class UsersApiGroup(RestApiGroup):
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def add_social_account_for_authenticated_user(self, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -90,7 +94,11 @@ OAuth app tokens and personal access tokens (classic) need the `user` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def block(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -291,7 +299,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:gpg_key` s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_public_ssh_key_for_authenticated_user(self, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -327,7 +339,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:gpg_key` s
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_ssh_signing_key_for_authenticated_user(self, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -363,7 +379,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:ssh_signin
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_attestations_bulk(self, username: str, body: Union[str, str], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -401,7 +421,11 @@ OAuth app tokens and personal access tokens (classic) need the `write:ssh_signin
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_attestations_by_id(self, username: str, attestation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -775,8 +799,12 @@ OAuth app tokens and personal access tokens (classic) need the `user:follow` sco
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        return rtnval
 
     def get_by_id(self, account_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Union[PrivateUser, PublicUser]:
         """
@@ -820,8 +848,12 @@ The Emails API enables you to list all of your email addresses, and toggle a pri
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        return rtnval
 
     def get_by_username(self, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Union[PrivateUser, PublicUser]:
         """
@@ -865,8 +897,12 @@ The Emails API enables you to list all of your email addresses, and toggle a pri
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Union[PrivateUser, PublicUser])
+        return rtnval
 
     def get_context_for_user(self, username: str, *, subject_type: Optional[str] = None, subject_id: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Hovercard:
         """
@@ -912,8 +948,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Hovercard.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Hovercard.from_dict(raw_data)
         return rtnobj
 
     def get_gpg_key_for_authenticated_user(self, gpg_key_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> GpgKey:
@@ -954,8 +993,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:gpg_key` sc
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = GpgKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = GpgKey.from_dict(raw_data)
         return rtnobj
 
     def get_public_ssh_key_for_authenticated_user(self, key_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Key:
@@ -996,8 +1038,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:public_key`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = Key.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = Key.from_dict(raw_data)
         return rtnobj
 
     def get_ssh_signing_key_for_authenticated_user(self, ssh_signing_key_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> SshSigningKey:
@@ -1038,8 +1083,11 @@ OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = SshSigningKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = SshSigningKey.from_dict(raw_data)
         return rtnobj
 
     def list(self, *, since: Optional[int] = None, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[SimpleUser]:
@@ -1187,8 +1235,12 @@ The collection of attestations returned by this endpoint is filtered according t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_blocked_by_authenticated_user(self, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[SimpleUser]:
         """
@@ -1994,6 +2046,9 @@ OAuth app tokens and personal access tokens (classic) need the `read:ssh_signing
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = PrivateUser.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = PrivateUser.from_dict(raw_data)
         return rtnobj

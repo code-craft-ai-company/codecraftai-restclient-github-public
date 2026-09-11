@@ -56,8 +56,11 @@ in the campaign.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CampaignSummary.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CampaignSummary.from_dict(raw_data)
         return rtnobj
 
     def delete_campaign(self, org: str, campaign_number: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -148,8 +151,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CampaignSummary.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CampaignSummary.from_dict(raw_data)
         return rtnobj
 
     def list_org_campaigns(self, org: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, direction: Optional[str] = "desc", state: Optional[str] = None, sort: Optional[str] = "created", exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[CampaignSummary]:
@@ -248,6 +254,9 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CampaignSummary.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CampaignSummary.from_dict(raw_data)
         return rtnobj

@@ -288,8 +288,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotAlert.from_dict(raw_data)
         return rtnobj
 
     def get_org_public_key(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DependabotPublicKey:
@@ -331,8 +334,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_org_secret(self, org: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrganizationDependabotSecret:
@@ -374,8 +380,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationDependabotSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationDependabotSecret.from_dict(raw_data)
         return rtnobj
 
     def get_repo_public_key(self, owner: str, repo: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DependabotPublicKey:
@@ -419,8 +428,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotPublicKey.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotPublicKey.from_dict(raw_data)
         return rtnobj
 
     def get_repo_secret(self, owner: str, repo: str, secret_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> DependabotSecret:
@@ -463,8 +475,11 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotSecret.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotSecret.from_dict(raw_data)
         return rtnobj
 
     def list_alerts_for_enterprise(self, enterprise: str, *, state: Optional[str] = None, severity: Optional[str] = None, ecosystem: Optional[str] = None, package: Optional[str] = None, epss_percentage: Optional[str] = None, has: Optional[Union[str, List[str]]] = None, scope: Optional[str] = None, sort: Optional[str] = "created", direction: Optional[str] = "desc", before: Optional[str] = None, after: Optional[str] = None, first: Optional[int] = 30, last: Optional[int] = None, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[DependabotAlertWithRepository]:
@@ -736,8 +751,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_repo_secrets(self, owner: str, repo: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -783,8 +802,12 @@ OAuth app tokens and personal access tokens (classic) need the `repo` scope to u
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_selected_repos_for_org_secret(self, org: str, secret_name: str, *, page: Optional[int] = 1, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -830,8 +853,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def remove_selected_repo_from_org_secret(self, org: str, secret_name: str, repository_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -924,8 +951,11 @@ Unauthorized users will not see the existence of this endpoint.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotRepositoryAccessDetails.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotRepositoryAccessDetails.from_dict(raw_data)
         return rtnobj
 
     def set_repository_access_default_level(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -1063,8 +1093,11 @@ OAuth app tokens and personal access tokens (classic) need the `security_events`
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = DependabotAlert.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = DependabotAlert.from_dict(raw_data)
         return rtnobj
 
     def update_repository_access_for_org(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:

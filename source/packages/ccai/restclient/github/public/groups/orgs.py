@@ -475,7 +475,11 @@ and "[Best practices for using the REST API](https://docs.github.com/rest/guides
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def create_issue_type(self, org: str, body: OrganizationCreateIssueType, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> IssueType:
         """
@@ -518,8 +522,11 @@ personal access tokens (classic) need the `admin:org` scope to use this endpoint
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = IssueType.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = IssueType.from_dict(raw_data)
         return rtnobj
 
     def create_or_update_custom_properties(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> List[CustomProperty]:
@@ -662,8 +669,11 @@ To use this endpoint, the authenticated user must be one of:
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CustomProperty.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CustomProperty.from_dict(raw_data)
         return rtnobj
 
     def create_webhook(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -707,7 +717,11 @@ edit webhooks that they did not create and users cannot list, view, or edit webh
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -793,7 +807,11 @@ https://docs.github.com/site-policy/github-terms/github-terms-of-service
             context_msg=None,
             aspects=aspects,
         )
-        return resp.json()
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            rtnval = resp.json()
+        return rtnval
 
     def delete_attestations_by_id(self, org: str, attestation_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
         """
@@ -1072,8 +1090,11 @@ To see information about an organization's GitHub plan, GitHub Apps need the `Or
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationFull.from_dict(raw_data)
         return rtnobj
 
     def get_custom_property(self, org: str, custom_property_name: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> CustomProperty:
@@ -1114,8 +1135,11 @@ Organization members can read these properties.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = CustomProperty.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = CustomProperty.from_dict(raw_data)
         return rtnobj
 
     def get_membership_for_authenticated_user(self, org: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrgMembership:
@@ -1154,8 +1178,11 @@ Organization members can read these properties.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgMembership.from_dict(raw_data)
         return rtnobj
 
     def get_membership_for_user(self, org: str, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrgMembership:
@@ -1195,8 +1222,11 @@ Organization members can read these properties.
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgMembership.from_dict(raw_data)
         return rtnobj
 
     def get_org_role(self, org: str, role_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrganizationRole:
@@ -1243,8 +1273,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationRole.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationRole.from_dict(raw_data)
         return rtnobj
 
     def get_org_ruleset_version(self, org: str, ruleset_id: int, version_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> str:
@@ -1285,8 +1318,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = str.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = str.from_dict(raw_data)
         return rtnobj
 
     def get_webhook(self, org: str, hook_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrgHook:
@@ -1332,8 +1368,11 @@ webhooks that they did not create and users cannot list, view, or edit webhooks 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgHook.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgHook.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_config_for_org(self, org: str, hook_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WebhookConfig:
@@ -1378,8 +1417,11 @@ webhooks that they did not create and users cannot list, view, or edit webhooks 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj
 
     def get_webhook_delivery(self, org: str, hook_id: int, delivery_id: int, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> HookDelivery:
@@ -1425,8 +1467,11 @@ webhooks that they did not create and users cannot list, view, or edit webhooks 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = HookDelivery.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = HookDelivery.from_dict(raw_data)
         return rtnobj
 
     def list(self, *, since: Optional[int] = None, per_page: Optional[int] = 30, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[OrganizationSimple]:
@@ -1518,8 +1563,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:read` scop
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_attestations(self, org: str, subject_digest: str, *, per_page: Optional[int] = 30, before: Optional[str] = None, after: Optional[str] = None, predicate_type: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1570,8 +1619,12 @@ The collection of attestations returned by this endpoint is filtered according t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_attestations_bulk(self, org: str, body: Dict[str, Any], *, per_page: Optional[int] = 30, before: Optional[str] = None, after: Optional[str] = None, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Dict[str, Any]:
         """
@@ -1619,8 +1672,12 @@ The collection of attestations returned by this endpoint is filtered according t
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_blocked_users(self, org: str, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[SimpleUser]:
         """
@@ -2215,8 +2272,12 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` scope
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        return self._parse_item(raw_data, Dict[str, Any])
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnval = None
+        else:
+            raw_data = resp.json()
+            rtnval = self._parse_item(raw_data, Dict[str, Any])
+        return rtnval
 
     def list_org_ruleset_history(self, org: str, ruleset_id: int, *, per_page: Optional[int] = 30, page: Optional[int] = 1, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> PagedList[RulesetVersion]:
         """
@@ -3465,8 +3526,11 @@ To prevent abuse, organization owners are limited to creating 50 organization in
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgMembership.from_dict(raw_data)
         return rtnobj
 
     def set_public_membership_for_authenticated_user(self, org: str, username: str, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -3603,8 +3667,11 @@ OAuth app tokens and personal access tokens (classic) need the `admin:org` or `r
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrganizationFull.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrganizationFull.from_dict(raw_data)
         return rtnobj
 
     def update_issue_type(self, org: str, issue_type_id: int, body: OrganizationUpdateIssueType, *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> IssueType:
@@ -3649,8 +3716,11 @@ personal access tokens (classic) need the `admin:org` scope to use this endpoint
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = IssueType.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = IssueType.from_dict(raw_data)
         return rtnobj
 
     def update_membership_for_authenticated_user(self, org: str, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> OrgMembership:
@@ -3689,8 +3759,11 @@ personal access tokens (classic) need the `admin:org` scope to use this endpoint
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgMembership.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgMembership.from_dict(raw_data)
         return rtnobj
 
     def update_pat_access(self, org: str, pat_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> Any:
@@ -3828,8 +3901,11 @@ webhooks that they did not create and users cannot list, view, or edit webhooks 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = OrgHook.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = OrgHook.from_dict(raw_data)
         return rtnobj
 
     def update_webhook_config_for_org(self, org: str, hook_id: int, body: Dict[str, Any], *, exp_status: Optional[List[int]] = None, headers: Optional[Dict[str, str]] = None, aspects: Optional[AspectsRest] = None) -> WebhookConfig:
@@ -3874,6 +3950,9 @@ webhooks that they did not create and users cannot list, view, or edit webhooks 
             context_msg=None,
             aspects=aspects,
         )
-        raw_data = resp.json()
-        rtnobj = WebhookConfig.from_dict(raw_data)
+        if resp.status_code in (204, 205) or (resp.status_code == 202 and len(resp.content) == 0):
+            rtnobj = None
+        else:
+            raw_data = resp.json()
+            rtnobj = WebhookConfig.from_dict(raw_data)
         return rtnobj
