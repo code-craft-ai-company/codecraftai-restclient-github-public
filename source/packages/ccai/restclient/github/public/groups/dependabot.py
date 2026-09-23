@@ -2,7 +2,7 @@
 
 from typing import Any, Dict, List, Optional, Union
 
-from ccai.restclient.base.aspectsrest import AspectsRest, DEFAULT_REST_ASPECTS
+from ccai.restclient.base.aspectsrest import AspectsRest
 from ccai.restclient.base.pagedlist import PagedList
 from ccai.restclient.base.restapigroup import RestApiGroup
 from ccai.restclient.github.public.schemas.dependabot import DependabotAlert
