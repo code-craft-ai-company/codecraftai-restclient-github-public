@@ -199,48 +199,38 @@ name = "codecraftai-credentials"
 version = "1.2.0"
 description = "Code Craft AI - Credentials Package"
 optional = false
-python-versions = ">=3.10,<4.0"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "codecraftai_credentials-1.2.0-py3-none-any.whl", hash = "sha256:fbf3fec7c2292e4f7bd9bc89ea89919b90d550379be6d9e6ae0e79fb20710ac1"},
-    {file = "codecraftai_credentials-1.2.0.tar.gz", hash = "sha256:5a65f4c931b58429eabd350b77ebc9fd2b42af8d28bcde0b81067d6265cb4dcd"},
+    {file = "codecraftai_credentials-1.2.0-py3-none-any.whl", hash = "sha256:d72de58745e6e83a92c925c8bed4a2f3430f795e14b63c5638c9691216f30279"},
+    {file = "codecraftai_credentials-1.2.0.tar.gz", hash = "sha256:6e066e9aae65e51dd340c7a9e4645bd54cb4a55b7f5a6dc0073ee54d778a81b1"},
 ]
 
 [package.dependencies]
 codecraftai-foundations = "<2.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://code-craft.ai/licensed-repository/simple"
-reference = "codecraftai"
 
 [[package]]
 name = "codecraftai-foundations"
 version = "1.2.0"
 description = "Code Craft AI - Foundations Package"
 optional = false
-python-versions = ">=3.10,<4.0"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "codecraftai_foundations-1.2.0-py3-none-any.whl", hash = "sha256:e9b51072f6e298a96a296b15c40723bc13c164e897be7c9926e7d44bdc4bd923"},
-    {file = "codecraftai_foundations-1.2.0.tar.gz", hash = "sha256:11674f3efb804add4d794d521800a24bfb5808d3e2dda6b476480c299fc04b1f"},
+    {file = "codecraftai_foundations-1.2.0-py3-none-any.whl", hash = "sha256:e50480cdac988a316a304f018bf60ffce6037c0535990d68e6f8788b6617a01a"},
+    {file = "codecraftai_foundations-1.2.0.tar.gz", hash = "sha256:b38877de5882ec8ce5ce983a357d35c7c63f12b2c45535d5999ed57c0b5fe1a6"},
 ]
-
-[package.source]
-type = "legacy"
-url = "https://code-craft.ai/licensed-repository/simple"
-reference = "codecraftai"
 
 [[package]]
 name = "codecraftai-restclient-base"
 version = "1.2.0"
 description = "Code Craft AI - Rest Client Base"
 optional = false
-python-versions = ">=3.10,<4.0"
+python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "codecraftai_restclient_base-1.2.0-py3-none-any.whl", hash = "sha256:73b8f1df1a2e5537f732846c4076f2b44f390a4b9b6dd969f24112326751b1c1"},
-    {file = "codecraftai_restclient_base-1.2.0.tar.gz", hash = "sha256:d80d099184c3f0b0da1fb6477d853c9c06ff77952d6da4638433a2f4fde6d8fe"},
+    {file = "codecraftai_restclient_base-1.2.0-py3-none-any.whl", hash = "sha256:e85bb0a2b8acbf3b79c2d16fb45195f1edb83436b544585b95669dd637e9041e"},
+    {file = "codecraftai_restclient_base-1.2.0.tar.gz", hash = "sha256:af666de0fccee448410cca7b0b39d36a70007e824d08e88ce29a93caa5c1589d"},
 ]
 
 [package.dependencies]
@@ -248,11 +238,6 @@ codecraftai-credentials = "<2.0.0"
 codecraftai-foundations = "<2.0.0"
 pyyaml = ">=6.0.3,<7.0.0"
 requests = ">=2.32.5,<3.0.0"
-
-[package.source]
-type = "legacy"
-url = "https://code-craft.ai/licensed-repository/simple"
-reference = "codecraftai"
 
 [[package]]
 name = "idna"
@@ -395,4 +380,4 @@ zstd = ["backports-zstd (>=1.0.0) ; python_version < \"3.14\""]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<4.0"
-content-hash = "317d25a0948bcb20edaf9d8c875171cbd2afb6c67d1de7da1caed1c21787b29b"
+content-hash = "ad508c5b1c6a806545d9375845b4700f0159568475eb9a260b29159ef7df3193"
